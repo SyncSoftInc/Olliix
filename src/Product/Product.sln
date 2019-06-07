@@ -1,0 +1,94 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29001.49
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SyncSoft.Olliix.Product.Service", "Host\Service\SyncSoft.Olliix.Product.Service.csproj", "{F76C2F16-8FD5-4DA6-9C8B-C7ED4B9EF092}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{D1C15953-54AD-419C-A2DB-7BD38A31F5A8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SyncSoft.Olliix", "..\Shared\Core\SyncSoft.Olliix.csproj", "{51F86FB5-ABE0-48F1-95E0-2804E80C1EB4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Host", "Host", "{432CE260-328E-4CCE-A70F-FBBB19A2632B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{44340327-7CF0-4EA7-B079-41AAAA666363}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{A50480DE-1D60-4E2D-B502-EDFC45CACBCF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SyncSoft.Olliix.Product.MySql", "DataAccess\MySql\SyncSoft.Olliix.Product.MySql.csproj", "{16C81AD5-DE13-4414-9BD7-FC92181FBF75}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SyncSoft.Olliix.Product.ElasticSearch", "DataAccess\ElasticSearch\SyncSoft.Olliix.Product.ElasticSearch.csproj", "{7BCB7443-59B8-4C11-8958-3E8CE96B2832}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SyncSoft.Olliix.Product.Consumer", "Business\Consumer\SyncSoft.Olliix.Product.Consumer.csproj", "{E974502F-9625-4D92-917F-ECA85F068D7D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SyncSoft.Olliix.Product.Domain", "Business\Domain\SyncSoft.Olliix.Product.Domain.csproj", "{B6371955-25C9-4311-BAA9-36A8C371487C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SyncSoft.Olliix.Product", "Shared\Core\SyncSoft.Olliix.Product.csproj", "{DB410E84-766A-413B-AC17-E3F662B1C751}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SyncSoft.Olliix.Product.Redis", "DataAccess\Redis\SyncSoft.Olliix.Product.Redis.csproj", "{356B1666-7828-4804-A0C5-8584578EF68E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SyncSoft.Olliix.Product.DataFacade", "DataAccess\DataFacade\SyncSoft.Olliix.Product.DataFacade.csproj", "{102616E4-06C1-4E84-A0DD-C840E5D876AD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{359DB26D-F0D6-40FD-922E-612AE3FC34BF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F76C2F16-8FD5-4DA6-9C8B-C7ED4B9EF092}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F76C2F16-8FD5-4DA6-9C8B-C7ED4B9EF092}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F76C2F16-8FD5-4DA6-9C8B-C7ED4B9EF092}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F76C2F16-8FD5-4DA6-9C8B-C7ED4B9EF092}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51F86FB5-ABE0-48F1-95E0-2804E80C1EB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51F86FB5-ABE0-48F1-95E0-2804E80C1EB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51F86FB5-ABE0-48F1-95E0-2804E80C1EB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51F86FB5-ABE0-48F1-95E0-2804E80C1EB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16C81AD5-DE13-4414-9BD7-FC92181FBF75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16C81AD5-DE13-4414-9BD7-FC92181FBF75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16C81AD5-DE13-4414-9BD7-FC92181FBF75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16C81AD5-DE13-4414-9BD7-FC92181FBF75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BCB7443-59B8-4C11-8958-3E8CE96B2832}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BCB7443-59B8-4C11-8958-3E8CE96B2832}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BCB7443-59B8-4C11-8958-3E8CE96B2832}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BCB7443-59B8-4C11-8958-3E8CE96B2832}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E974502F-9625-4D92-917F-ECA85F068D7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E974502F-9625-4D92-917F-ECA85F068D7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E974502F-9625-4D92-917F-ECA85F068D7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E974502F-9625-4D92-917F-ECA85F068D7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6371955-25C9-4311-BAA9-36A8C371487C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6371955-25C9-4311-BAA9-36A8C371487C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6371955-25C9-4311-BAA9-36A8C371487C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6371955-25C9-4311-BAA9-36A8C371487C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB410E84-766A-413B-AC17-E3F662B1C751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB410E84-766A-413B-AC17-E3F662B1C751}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB410E84-766A-413B-AC17-E3F662B1C751}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB410E84-766A-413B-AC17-E3F662B1C751}.Release|Any CPU.Build.0 = Release|Any CPU
+		{356B1666-7828-4804-A0C5-8584578EF68E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{356B1666-7828-4804-A0C5-8584578EF68E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{356B1666-7828-4804-A0C5-8584578EF68E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{356B1666-7828-4804-A0C5-8584578EF68E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{102616E4-06C1-4E84-A0DD-C840E5D876AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{102616E4-06C1-4E84-A0DD-C840E5D876AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{102616E4-06C1-4E84-A0DD-C840E5D876AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{102616E4-06C1-4E84-A0DD-C840E5D876AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F76C2F16-8FD5-4DA6-9C8B-C7ED4B9EF092} = {432CE260-328E-4CCE-A70F-FBBB19A2632B}
+		{51F86FB5-ABE0-48F1-95E0-2804E80C1EB4} = {D1C15953-54AD-419C-A2DB-7BD38A31F5A8}
+		{16C81AD5-DE13-4414-9BD7-FC92181FBF75} = {A50480DE-1D60-4E2D-B502-EDFC45CACBCF}
+		{7BCB7443-59B8-4C11-8958-3E8CE96B2832} = {A50480DE-1D60-4E2D-B502-EDFC45CACBCF}
+		{E974502F-9625-4D92-917F-ECA85F068D7D} = {44340327-7CF0-4EA7-B079-41AAAA666363}
+		{B6371955-25C9-4311-BAA9-36A8C371487C} = {44340327-7CF0-4EA7-B079-41AAAA666363}
+		{DB410E84-766A-413B-AC17-E3F662B1C751} = {D1C15953-54AD-419C-A2DB-7BD38A31F5A8}
+		{356B1666-7828-4804-A0C5-8584578EF68E} = {A50480DE-1D60-4E2D-B502-EDFC45CACBCF}
+		{102616E4-06C1-4E84-A0DD-C840E5D876AD} = {A50480DE-1D60-4E2D-B502-EDFC45CACBCF}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {30468763-5B5F-4DF9-8E33-6DB09C949ADD}
+	EndGlobalSection
+EndGlobal

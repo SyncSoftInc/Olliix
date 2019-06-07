@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Certificate\ss.pfx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Certificate\ss.pfx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SyncSoft.App.RabbitMQ" Version="2.9.5.1" />
+    <PackageReference Include="SyncSoft.ECP.Azure" Version="2.9.5" />
+    <PackageReference Include="SyncSoft.ECP.MongoDB" Version="2.9.5" />
+    <PackageReference Include="SyncSoft.ECP.MySql" Version="2.9.5" />
+    <PackageReference Include="SyncSoft.ECP.Quartz" Version="2.9.5.2" />
+    <PackageReference Include="SyncSoft.ECP.Redis" Version="2.9.5" />
+    <PackageReference Include="SyncSoft.ECP.SqlServer" Version="2.9.5" />
+  </ItemGroup>
+
+</Project>
