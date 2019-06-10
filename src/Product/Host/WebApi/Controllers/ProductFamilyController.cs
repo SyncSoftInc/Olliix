@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SyncSoft.App.Components;
 using SyncSoft.ECP.AspNetCore.Mvc.Controllers;
-using SyncSoft.Olliix.Product.Command.ProductItem;
+using SyncSoft.Olliix.Product.Command.ProductFamily;
 using SyncSoft.Olliix.Product.DataFacade;
 using SyncSoft.Olliix.Product.DTO;
 using System;
 using System.Threading.Tasks;
 
-namespace SyncSoft.Olliix.Service.Controllers
+namespace SyncSoft.Olliix.Product.WebApi.Controllers
 {
-    public class ProductController : ApiController
+    public class ProductFamilyController : ApiController
     {
         // *******************************************************************************************************************************
         #region -  Lazy Object(s)  -
@@ -29,14 +29,15 @@ namespace SyncSoft.Olliix.Service.Controllers
 
         #endregion
         // *******************************************************************************************************************************
-        #region -  CreateProductItem  -
+        #region -  CreateProductFamily  -
 
-        [HttpPost("product/item")]
-        public async Task<string> CreateProductItemAsync(CreateProductItemCommand cmd)
+        [HttpPost("product/family")]
+        public async Task<string> CreateProductItemAsync(CreateProductFamilyCommand cmd)
         {
             return await RequestAsync(cmd).ConfigureAwait(false);
         }
 
         #endregion
     }
+
 }

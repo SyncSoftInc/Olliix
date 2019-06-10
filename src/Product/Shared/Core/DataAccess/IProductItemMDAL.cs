@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using SyncSoft.Olliix.Product.Command.ProductItem;
+﻿using SyncSoft.Olliix.Product.Command.ProductItem;
+using System.Threading.Tasks;
 
 namespace SyncSoft.Olliix.Product.DataAccess
 {

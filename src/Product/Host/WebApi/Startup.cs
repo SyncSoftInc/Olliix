@@ -5,21 +5,26 @@ using Microsoft.Extensions.DependencyInjection;
 using SyncSoft.App;
 using SyncSoft.ECP.AspNetCore.Hosting;
 
-namespace SyncSoft.Olliix.Product.Service
+namespace SyncSoft.Olliix.Product.WebApi
 {
     public class Startup : SerilogStartup
     {
-        private const string RESOURE_NAME = "olx_product_svc";
+        private const string RESOURE_NAME = "olx_product_api_v1";
 
         public Startup(IConfiguration configuration)
             : base(configuration)
         {
-            OlliixEngine.Init(configuration, o => o.ResourceName = RESOURE_NAME)
+            OlliixEngine.Init(configuration, o =>
+            {
+                o.ResourceName = RESOURE_NAME;
+                o.UseRabbitMQ = true;
+            })
                 .UseProductRedis()
-                .UseProductMySql()
+                .UseProductSqlServer()
                 .UseProductES()
                 .UseProductDF()
                 .UseProductDomain()
+                .UseQuartz()
                 .Start();
         }
 

@@ -12,7 +12,9 @@ namespace SyncSoft.Olliix
 {
     public static class OlliixEngine
     {
-        public static CommonConfigurator Init(IConfiguration configuration = null, Action<OlliixEngineOption> configOptions = null, OlliixEngineOption options = null)
+        public static CommonConfigurator Init(IConfiguration configuration = null,
+                                              Action<OlliixEngineOption> configOptions = null,
+                                              OlliixEngineOption options = null)
         {
             options = options ?? new OlliixEngineOption();
             configOptions?.Invoke(options);
@@ -23,7 +25,7 @@ namespace SyncSoft.Olliix
                 // ^^^^^^^^^^
             }
 
-            var configurator1 = Engine.Init(o =>
+            var configurator = Engine.Init(o =>
             {
                 o.Configuration = configuration;
                 o.AllowOverridingRegistrations = options.AllowOverridingRegistrations;
@@ -45,14 +47,24 @@ namespace SyncSoft.Olliix
                         a.PasswordEncryptorType = typeof(Sha256PasswordEncryptor);
                     };
                 })
-                .UseECPAspNetCore(options.ResourceName)
-                .UseMessageQueue();
+                .UseECPAspNetCore(options.ResourceName);
 
-            var configurator2 = options.UseRabbitMQ ? configurator1.UseRabbitMQ() : configurator1.UseDefaultMessageComponents();
+            if (options.UseRabbitMQ)
+            {
+                configurator
+                    .UseMessageQueue()
+                    .UseRabbitMQ();
+            }
+            else
+            {
+                configurator
+                    .UseMessageQueue()
+                    .UseDefaultMessageComponents();
+            }
 
-            configurator2.UseECPRedis();
+            configurator.UseECPRedis();
 
-            return configurator2;
+            return configurator;
         }
     }
 }

@@ -24,8 +24,8 @@
     <ProjectReference Include="..\..\Business\Consumer\SyncSoft.Olliix.Product.Consumer.csproj" />
     <ProjectReference Include="..\..\DataAccess\DataFacade\SyncSoft.Olliix.Product.DataFacade.csproj" />
     <ProjectReference Include="..\..\DataAccess\ElasticSearch\SyncSoft.Olliix.Product.ElasticSearch.csproj" />
-    <ProjectReference Include="..\..\DataAccess\MySql\SyncSoft.Olliix.Product.MySql.csproj" />
     <ProjectReference Include="..\..\DataAccess\Redis\SyncSoft.Olliix.Product.Redis.csproj" />
+    <ProjectReference Include="..\..\DataAccess\SqlServer\SyncSoft.Olliix.Product.SqlServer.csproj" />
   </ItemGroup>
 
 </Project>

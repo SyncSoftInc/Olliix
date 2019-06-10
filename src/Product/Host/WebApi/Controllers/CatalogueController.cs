@@ -4,7 +4,7 @@ using SyncSoft.Olliix.Product.Query;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SyncSoft.Olliix.Service.Controllers
+namespace SyncSoft.Olliix.Product.WebApi.Controllers
 {
     public class CatalogueController : ApiController
     {
