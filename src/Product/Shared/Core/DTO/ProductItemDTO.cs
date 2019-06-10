@@ -23,7 +23,7 @@ namespace SyncSoft.Olliix.Product.DTO
         public decimal? Width { get; set; }
         public decimal? Height { get; set; }
 
-        public ProductItemStatusEnum Status { get; set; }
+        public ProductItemFlagsEnum Flags { get; set; }
 
         public string[] ExtraImages { get; set; }
     }

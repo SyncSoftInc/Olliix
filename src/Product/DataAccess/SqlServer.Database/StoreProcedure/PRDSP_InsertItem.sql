@@ -15,7 +15,7 @@
     , @Length DECIMAL(18,2)
     , @Width DECIMAL(18,2)
     , @Height DECIMAL(18,2)
-    , @Status INT
+    , @Flags INT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -37,7 +37,7 @@ INSERT INTO ProductItems(
     , Length
     , Width
     , Height
-    , Status
+    , Flags
 ) VALUES(
       @ItemNo
     , @Family_ID
@@ -55,6 +55,6 @@ INSERT INTO ProductItems(
     , @Length
     , @Width
     , @Height
-    , @Status
+    , @Flags
 )
 END

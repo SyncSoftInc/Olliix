@@ -3,7 +3,7 @@
 namespace SyncSoft.Olliix.Product.Enum
 {
     [Flags]
-    public enum ProductItemStatusEnum : int
+    public enum ProductItemFlagsEnum : int
     {
         HasChanges = 1 << 0,
         Special = 1 << 1,

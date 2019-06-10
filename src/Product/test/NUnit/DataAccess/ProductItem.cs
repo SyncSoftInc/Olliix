@@ -22,7 +22,7 @@ namespace DataAccess
         public async Task Insert()
         {
 
-            var tasks = Enumerable.Range(1, 1000).Select(async i =>
+            var tasks = Enumerable.Range(1, 1).Select(async i =>
             {
                 var cmd = Mock.CreateWithRandomData<CreateProductItemCommand>();
                 var msgCode = await _ProductItemMDAL.InsertAsync(cmd).ConfigureAwait(false);

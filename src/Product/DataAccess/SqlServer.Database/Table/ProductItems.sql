@@ -15,7 +15,7 @@
     [Length]           DECIMAL (18, 2) DEFAULT (NULL) NULL,
     [Width]            DECIMAL (18, 2) DEFAULT (NULL) NULL,
     [Height]           DECIMAL (18, 2) DEFAULT (NULL) NULL,
-    [Status]           INT             NOT NULL,
+    [Flags]           INT             NOT NULL,
     CONSTRAINT [PK_ProductItems] PRIMARY KEY CLUSTERED ([ItemNo] ASC)
 );
 

@@ -39,7 +39,7 @@ namespace SyncSoft.Olliix.Product.SqlServer.ProductItem
             para.Add("@Length", cmd.Length);
             para.Add("@Width", cmd.Width);
             para.Add("@Height", cmd.Height);
-            para.Add("@Status", cmd.Status);
+            para.Add("@Flags", cmd.Flags);
 
             return await base.TryExecuteAsync("PRDSP_InsertItem", para, commandType: CommandType.StoredProcedure).ConfigureAwait(false);
         }

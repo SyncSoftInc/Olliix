@@ -19,12 +19,6 @@ namespace SyncSoft.Olliix
             options = options ?? new OlliixEngineOption();
             configOptions?.Invoke(options);
 
-            if (options.ResourceName.IsMissing())
-            {
-                throw new ArgumentNullException(nameof(options.ResourceName));
-                // ^^^^^^^^^^
-            }
-
             var configurator = Engine.Init(o =>
             {
                 o.Configuration = configuration;
