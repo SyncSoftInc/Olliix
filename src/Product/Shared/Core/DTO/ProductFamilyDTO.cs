@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SyncSoft.Olliix.Product.Enum;
+using System.Collections.Generic;
 
 namespace SyncSoft.Olliix.Product.DTO
 {
@@ -8,6 +9,7 @@ namespace SyncSoft.Olliix.Product.DTO
         public string Name { get; set; }
         public string Brand { get; set; }
 
+        public ProductFlagsEnum? Flags { get; set; }
         public IList<ProductItemDTO> Items { get; set; }
     }
 }

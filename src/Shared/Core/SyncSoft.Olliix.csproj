@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="SyncSoft.App.ElasticSearch" Version="2.9.5" />
     <PackageReference Include="SyncSoft.App.RabbitMQ" Version="2.9.5.1" />
     <PackageReference Include="SyncSoft.ECP.Azure" Version="2.9.5" />
     <PackageReference Include="SyncSoft.ECP.MongoDB" Version="2.9.5" />

@@ -6,8 +6,9 @@ BEGIN
     SET NOCOUNT ON;
 
     DECLARE @ItemNo NVARCHAR(50);
+    DECLARE @Family_ID NVARCHAR(50);
 
-    SELECT @ItemNo = ItemNo FROM inserted;
+    SELECT @Family_ID = Family_ID FROM inserted;
 
-    UPDATE ProductItems SET Flags = (Flags | 1) WHERE ItemNo = @ItemNo
+    UPDATE ProductFamilies SET Flags = ISNULL((Flags | 1), 1) WHERE ID = @Family_ID    -- 将指定Family标记为有更新
 END

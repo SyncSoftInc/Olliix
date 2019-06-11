@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Dapper;
+using NUnit.Framework;
 using SyncSoft.App.Components;
 using SyncSoft.Olliix.Product.Command.ProductFamily;
 using SyncSoft.Olliix.Product.DataAccess;
@@ -8,13 +9,19 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    public class ProductFamily
+    public class ProductFamily : DALTestBase
     {
         // *******************************************************************************************************************************
         #region -  Lazy Object(s)  -
 
         private static readonly Lazy<IProductFamilyMDAL> _lazyProductFamilyMDAL = ObjectContainer.LazyResolve<IProductFamilyMDAL>();
         private IProductFamilyMDAL _ProductFamilyMDAL => _lazyProductFamilyMDAL.Value;
+
+        #endregion
+        // *******************************************************************************************************************************
+        #region -  Field(s)  -
+
+
 
         #endregion
 
@@ -24,12 +31,19 @@ namespace DataAccess
             var tasks = Enumerable.Range(1, 200).Select(async i =>
             {
                 var cmd = Mock.CreateWithRandomData<CreateProductFamilyCommand>();
+                cmd.ID = $"{TestEnv.Family_IdPrefix}{i:D3}";
                 var msgCode = await _ProductFamilyMDAL.InsertAsync(cmd).ConfigureAwait(false);
                 Assert.IsTrue(msgCode.IsSuccess());
                 return msgCode;
             }).ToArray();
 
             await Task.WhenAll(tasks).ConfigureAwait(false);
+        }
+
+        [Test, Order(0)]
+        public void Cleanup()
+        {
+            Connection.Execute(sql: $"DELETE FROM ProductFamilies WHERE ID LIKE '{TestEnv.Family_IdPrefix}%'");
         }
     }
 }
