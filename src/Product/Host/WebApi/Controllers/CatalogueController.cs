@@ -10,7 +10,7 @@ namespace SyncSoft.Olliix.Product.WebApi.Controllers
         [HttpPost("catalogue/items")]
         public async Task<string> GenerateFamilyItems(GenerateCatalogueItemCommand cmd)
         {
-            return await RequestAsync(cmd).ConfigureAwait(false);
+            return await SendAsync(cmd).ConfigureAwait(false);
         }
     }
 }

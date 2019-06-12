@@ -1,6 +1,6 @@
 ﻿namespace SyncSoft.Olliix.Product.Command.Catalogue
 {
-    public class GenerateCatalogueItemCommand : SyncSoft.App.Messaging.RequestCommand
+    public class GenerateCatalogueItemCommand : SyncSoft.App.Messaging.AsyncRequest
     {
         public string FamilyID { get; set; }
     }
