@@ -5,7 +5,7 @@ using SyncSoft.Olliix.Product.Domain.ProductItem;
 using System;
 using System.Threading.Tasks;
 
-namespace SyncSoft.Olliix.Product.Consumer
+namespace SyncSoft.Olliix.Product.Consumer.ProductItem
 {
     public class ProductItemCommandConsumer
         : IConsumer<CreateProductItemCommand>

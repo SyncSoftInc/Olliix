@@ -20,7 +20,10 @@ namespace SyncSoft.Olliix.Product.Domain.Catalogue
 
         public async Task<string> GenerateByFamilyAsync(GenerateCatalogueItemCommand cmd)
         {
-            throw new NotImplementedException();
+            var tran = new Transaction(cmd);
+            await tran.RunAsync().ConfigureAwait(false);
+
+            return tran.IsSuccess ? MsgCodes.SUCCESS : string.Join("\n", tran.ReadLogs());
         }
 
         #endregion
