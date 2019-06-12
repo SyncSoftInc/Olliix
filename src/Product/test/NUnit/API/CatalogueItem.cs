@@ -2,7 +2,6 @@
 using SyncSoft.App.Components;
 using SyncSoft.Olliix.Product.API.Catalogue;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace API
@@ -13,19 +12,16 @@ namespace API
         #region -  Lazy Object(s)  -
 
         private static readonly Lazy<ICatalogueItemApi> _lazyCatalogueItemApi = ObjectContainer.LazyResolve<ICatalogueItemApi>();
-        private ICatalogueItemApi _CatalogueItemApi => _lazyCatalogueItemApi.Value;
+        private ICatalogueItemApi CatalogueItemApi => _lazyCatalogueItemApi.Value;
 
         #endregion
 
         [Test]
-        public async Task Generate()
+        public async Task GenerateFamilyItems()
         {
-            var hr = await _CatalogueItemApi.GenerateFamilyItemsAsync(new { FamilyID = "11111" }).ConfigureAwait(false);
-            var msgCodes = await hr.GetResultAsync().ConfigureAwait(false);
-            msgCodes.ForEach(x =>
-            {
-                Assert.IsTrue(x.IsSuccess());
-            });
+            var hr = await CatalogueItemApi.GenerateFamilyItemsAsync(new { FamilyID = "FAMILY001" }).ConfigureAwait(false);
+            var msgCode = await hr.GetResultAsync().ConfigureAwait(false);
+            Assert.IsTrue(msgCode.IsSuccess());
         }
     }
 }
