@@ -10,10 +10,13 @@ using System.Threading.Tasks;
 
 namespace SyncSoft.Olliix.Product.Domain.Catalogue
 {
-    public class CleanFamilyActivity : TccActivity
+    public class GenerateItemsActivity : TccActivity
     {
         // *******************************************************************************************************************************
         #region -  Lazy Object(s)  -
+
+        private static readonly Lazy<IProductItemMDAL> _lazyProductItemMDAL = ObjectContainer.LazyResolve<IProductItemMDAL>();
+        private IProductItemMDAL _ProductItemMDAL => _lazyProductItemMDAL.Value;
 
         private static readonly Lazy<ICatalogueItemQDAL> _lazyCatalogueItemQDAL = ObjectContainer.LazyResolve<ICatalogueItemQDAL>();
         private ICatalogueItemQDAL _CatalogueItemQDAL => _lazyCatalogueItemQDAL.Value;
@@ -26,20 +29,19 @@ namespace SyncSoft.Olliix.Product.Domain.Catalogue
 
         #endregion
         // *******************************************************************************************************************************
+        #region -  Property(ies)  -
+
+        public override int RunOrdinal => 1;
+
+        #endregion
+        // *******************************************************************************************************************************
         #region -  Run  -
 
         protected override async Task RunAsync(CancellationToken? cancellationToken)
         {
             var familyId = Context.Get<string>("FamilyID");
 
-            // 备份老数据
-            var items = await _CatalogueItemQDAL.GetFamilyItemsAsync(familyId).ConfigureAwait(false);
-            Context.Set(Context_BackupItems, items);
-
-            // 删除
-            var msgCode = await _CatalogueItemQDAL.DeleteFamilyItemsAsync(familyId).ConfigureAwait(false);
-            if (!msgCode.IsSuccess()) throw new Exception(msgCode);
-            // ^^^^^^^^^^
+            var items = await _ProductItemMDAL.GetFamilyWithItemsAsync(familyId).ConfigureAwait(false);
         }
 
         #endregion

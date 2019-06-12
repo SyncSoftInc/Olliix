@@ -4,6 +4,8 @@ namespace SyncSoft.Olliix.Product.DTO
 {
     public class ProductItemDTO
     {
+        public string Name { get; set; }
+        public string Brand { get; set; }
         public string Family_ID { get; set; }
         public string ItemNo { get; set; }
         public string Size { get; set; }

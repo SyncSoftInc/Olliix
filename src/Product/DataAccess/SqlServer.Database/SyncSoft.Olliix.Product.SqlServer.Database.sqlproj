@@ -59,11 +59,14 @@
     <Folder Include="Table" />
     <Folder Include="StoreProcedure" />
     <Folder Include="Trigger" />
+    <Folder Include="View" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Table\ProductItems.sql" />
     <Build Include="StoreProcedure\PRDSP_InsertItem.sql" />
     <Build Include="Table\ProductFamilies.sql" />
     <Build Include="Trigger\ProductItems.sql" />
+    <Build Include="View\V_ProductItems.sql" />
+    <Build Include="View\V_ProductFamilyItems.sql" />
   </ItemGroup>
 </Project>

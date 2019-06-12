@@ -16,6 +16,8 @@ namespace SyncSoft.Olliix.Product.Domain.Catalogue
         public override ILogger Logger => _lazyLogger.Value;
 
         #endregion
+        // *******************************************************************************************************************************
+        #region -  Constructor(s)  -
 
         public Transaction(GenerateCatalogueItemCommand command)
             : base(command.CorrelationId)
@@ -23,9 +25,16 @@ namespace SyncSoft.Olliix.Product.Domain.Catalogue
             Context.Set("FamilyID", command.FamilyID);
         }
 
+        #endregion
+        // *******************************************************************************************************************************
+        #region -  BuildActivities  -
+
         protected override IEnumerable<TransactionActivity> BuildActivities()
         {
             yield return new CleanFamilyActivity();
+            yield return new GenerateItemsActivity();
         }
+
+        #endregion
     }
 }

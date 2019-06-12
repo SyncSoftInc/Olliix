@@ -6,8 +6,8 @@ namespace SyncSoft.Olliix.Product.Enum
     public enum ProductFlagsEnum : int
     {
         HasChanges = 1 << 0,    // [TRG_ProductItems]
-        Special = 1 << 1,
+        Inactive = 1 << 1,      // [V_ProductItems]
         Clearance = 1 << 2,
-        Inactive = 1 << 3,
+        Special = 1 << 3,
     }
 }

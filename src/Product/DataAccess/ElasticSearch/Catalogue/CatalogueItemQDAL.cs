@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SyncSoft.Olliix.Product.ElasticSearch.Catalogue
 {
-    public class CatalogueItemDAL : ICatalogueItemQDAL
+    public class CatalogueItemQDAL : ICatalogueItemQDAL
     {
         // *******************************************************************************************************************************
         #region -  Field(s)  -

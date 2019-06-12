@@ -10,6 +10,6 @@ namespace SyncSoft.Olliix.Product.DTO
         public string Brand { get; set; }
 
         public ProductFlagsEnum? Flags { get; set; }
-        public IList<ProductItemDTO> Items { get; set; }
+        public IList<ProductItemDTO> Items { get; set; } = new List<ProductItemDTO>();
     }
 }

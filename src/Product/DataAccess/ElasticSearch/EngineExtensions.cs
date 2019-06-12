@@ -13,7 +13,7 @@ namespace SyncSoft.App
 
             configurator.Engine.Starting += (o, e) =>
             {
-                ObjectContainer.Register<ICatalogueItemQDAL, CatalogueItemDAL>(LifeCycleEnum.Singleton);
+                ObjectContainer.Register<ICatalogueItemQDAL, CatalogueItemQDAL>(LifeCycleEnum.Singleton);
             };
 
             return configurator;
