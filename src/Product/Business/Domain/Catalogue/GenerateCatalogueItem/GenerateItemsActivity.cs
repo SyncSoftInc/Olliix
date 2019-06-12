@@ -16,16 +16,10 @@ namespace SyncSoft.Olliix.Product.Domain.Catalogue
         #region -  Lazy Object(s)  -
 
         private static readonly Lazy<IProductItemMDAL> _lazyProductItemMDAL = ObjectContainer.LazyResolve<IProductItemMDAL>();
-        private IProductItemMDAL _ProductItemMDAL => _lazyProductItemMDAL.Value;
+        private IProductItemMDAL ProductItemMDAL => _lazyProductItemMDAL.Value;
 
         private static readonly Lazy<ICatalogueItemQDAL> _lazyCatalogueItemQDAL = ObjectContainer.LazyResolve<ICatalogueItemQDAL>();
-        private ICatalogueItemQDAL _CatalogueItemQDAL => _lazyCatalogueItemQDAL.Value;
-
-        #endregion
-        // *******************************************************************************************************************************
-        #region -  Field(s)  -
-
-        private const string Context_BackupItems = "BackupItems";
+        private ICatalogueItemQDAL CatalogueItemQDAL => _lazyCatalogueItemQDAL.Value;
 
         #endregion
         // *******************************************************************************************************************************
@@ -41,7 +35,7 @@ namespace SyncSoft.Olliix.Product.Domain.Catalogue
         {
             var familyId = Context.Get<string>("FamilyID");
 
-            var family = await _ProductItemMDAL.GetFamilyWithItemsAsync(familyId).ConfigureAwait(false);
+            var family = await ProductItemMDAL.GetFamilyWithItemsAsync(familyId).ConfigureAwait(false);
             if (family.IsNotNull() && family.Items.IsPresent())
             {
                 var catalogueItems = family.Items
@@ -49,27 +43,28 @@ namespace SyncSoft.Olliix.Product.Domain.Catalogue
                     .SelectMany(x =>
                     {
                         var productItem = x.First();
-                        var catalogueItem = new CatalogueItemDTO();
+                        var catalogueItem = new CatalogueItemDTO
+                        {
+                            Name = productItem.Name,
+                            Family_ID = productItem.Family_ID,
+                            ImageHash = productItem.ImageHash,
+                            ImageUrl = productItem.ImageUrl,
+                            //catalogueItem.DetailUrl = productItem.DetailUrl;
+                            //catalogueItem.BrandUrl = productItem.BrandUrl;
+                            Brand = productItem.Brand,
+                            Room = productItem.Room,
+                            Size = productItem.Size,
+                            Color = productItem.Color,
+                            Price = productItem.Price,
 
-                        catalogueItem.Name = productItem.Name;
-                        catalogueItem.Family_ID = productItem.Family_ID;
-                        catalogueItem.ImageHash = productItem.ImageHash;
-                        catalogueItem.ImageUrl = productItem.ImageUrl;
-                        //catalogueItem.DetailUrl = productItem.DetailUrl;
-                        //catalogueItem.BrandUrl = productItem.BrandUrl;
-                        catalogueItem.Brand = productItem.Brand;
-                        catalogueItem.Room = productItem.Room;
-                        catalogueItem.Size = productItem.Size;
-                        catalogueItem.Color = productItem.Color;
-                        catalogueItem.Price = productItem.Price;
-
-                        catalogueItem.Search_ItemNOs = string.Join(",", x.Select(a => a.ItemNo));
+                            Search_ItemNOs = string.Join(",", x.Select(a => a.ItemNo))
+                        };
                         //catalogueItem.Search_Colors = string.Join(",", x.Select(a => a.Color));
 
                         return new[] { catalogueItem };
                     });
 
-                var msgCode = await _CatalogueItemQDAL.BulkInsertItemsAsync(catalogueItems).ConfigureAwait(false);
+                var msgCode = await CatalogueItemQDAL.BulkInsertItemsAsync(catalogueItems).ConfigureAwait(false);
                 if (!msgCode.IsSuccess()) throw new Exception(msgCode);
                 // ^^^^^^^^^^
             }

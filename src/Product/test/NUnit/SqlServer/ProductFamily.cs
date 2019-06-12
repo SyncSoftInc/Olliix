@@ -16,7 +16,7 @@ namespace SqlServer
         #region -  Lazy Object(s)  -
 
         private static readonly Lazy<IProductFamilyMDAL> _lazyProductFamilyMDAL = ObjectContainer.LazyResolve<IProductFamilyMDAL>();
-        private IProductFamilyMDAL _ProductFamilyMDAL => _lazyProductFamilyMDAL.Value;
+        private IProductFamilyMDAL ProductFamilyMDAL => _lazyProductFamilyMDAL.Value;
 
         #endregion
         // *******************************************************************************************************************************
@@ -33,7 +33,7 @@ namespace SqlServer
             {
                 var cmd = Mock.CreateWithRandomData<CreateProductFamilyCommand>();
                 cmd.ID = TestUtils.CreateFamilyID(i);
-                var msgCode = await _ProductFamilyMDAL.InsertAsync(cmd).ConfigureAwait(false);
+                var msgCode = await ProductFamilyMDAL.InsertAsync(cmd).ConfigureAwait(false);
                 Assert.IsTrue(msgCode.IsSuccess());
                 return msgCode;
             }).ToArray();

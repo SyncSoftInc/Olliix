@@ -7,9 +7,9 @@ namespace API
     {
 
         [Test]
-        public async Task Insert()
+        public Task Insert()
         {
-
+            return Task.CompletedTask;
         }
     }
 }
