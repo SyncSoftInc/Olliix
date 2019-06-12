@@ -1,6 +1,7 @@
 ﻿using SyncSoft.App.Components;
 using SyncSoft.App.EngineConfigs;
 using SyncSoft.Olliix.Product.API;
+using SyncSoft.Olliix.Product.API.Catalogue;
 using SyncSoft.Olliix.Product.API.ProductFamily;
 using SyncSoft.Olliix.Product.API.ProductItem;
 
@@ -14,6 +15,7 @@ namespace SyncSoft.App
             {
                 ObjectContainer.Register<IProductItemApi, ProductItemApi>(LifeCycleEnum.Singleton);
                 ObjectContainer.Register<IProductFamilyApi, ProductFamilyApi>(LifeCycleEnum.Singleton);
+                ObjectContainer.Register<ICatalogueItemApi, CatalogueItemApi>(LifeCycleEnum.Singleton);
             };
 
             return configurator;

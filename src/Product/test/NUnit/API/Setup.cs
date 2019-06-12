@@ -12,6 +12,7 @@ namespace API
         {
             OlliixEngine.Init()
                 .UseProductAPI()
+                .AsUnitTestApiClient()
                 .Start();
         }
     }

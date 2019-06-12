@@ -8,8 +8,4 @@
     <ProjectReference Include="..\Domain\SyncSoft.Olliix.Product.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Catalogue\" />
-  </ItemGroup>
-
 </Project>

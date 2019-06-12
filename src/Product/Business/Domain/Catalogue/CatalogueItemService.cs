@@ -1,7 +1,4 @@
-﻿using SyncSoft.App.Components;
-using SyncSoft.Olliix.Product.Command.Catalogue;
-using SyncSoft.Olliix.Product.DataAccess.ProductItem;
-using System;
+﻿using SyncSoft.Olliix.Product.Command.Catalogue;
 using System.Threading.Tasks;
 
 namespace SyncSoft.Olliix.Product.Domain.Catalogue
@@ -11,8 +8,8 @@ namespace SyncSoft.Olliix.Product.Domain.Catalogue
         // *******************************************************************************************************************************
         #region -  Lazy Object(s)  -
 
-        private static readonly Lazy<IProductItemMDAL> _lazyProductItemMDAL = ObjectContainer.LazyResolve<IProductItemMDAL>();
-        private IProductItemMDAL _ProductItemMDAL => _lazyProductItemMDAL.Value;
+        //private static readonly Lazy<IProductItemMDAL> _lazyProductItemMDAL = ObjectContainer.LazyResolve<IProductItemMDAL>();
+        //private IProductItemMDAL _ProductItemMDAL => _lazyProductItemMDAL.Value;
 
         #endregion
         // *******************************************************************************************************************************
