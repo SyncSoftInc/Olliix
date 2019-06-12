@@ -9,9 +9,14 @@ namespace SyncSoft.Olliix.Product.WebApi.Controllers
     public class CatalogueController : ApiController
     {
         [HttpPost("catalogues/items")]
-        public async Task<IList<string>> GenerateFamilyItems(GenerateCatalogueItemCommand cmd)
+        public Task<IList<string>> GenerateFamilyItems(GenerateCatalogueItemCommand cmd)
         {
-            return new string[] { "value1", "value2" };
+            if (cmd == null)
+            {
+                throw new System.ArgumentNullException(nameof(cmd));
+            }
+
+            throw new System.NotImplementedException();
         }
     }
 }
