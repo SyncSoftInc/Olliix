@@ -12,14 +12,14 @@ namespace API
         #region -  Lazy Object(s)  -
 
         private static readonly Lazy<ICatalogueItemApi> _lazyCatalogueItemApi = ObjectContainer.LazyResolve<ICatalogueItemApi>();
-        private ICatalogueItemApi _CatalogueItemApi => _lazyCatalogueItemApi.Value;
+        private ICatalogueItemApi CatalogueItemApi => _lazyCatalogueItemApi.Value;
 
         #endregion
 
         [Test]
-        public async Task Generate()
+        public async Task GenerateFamilyItems()
         {
-            var hr = await _CatalogueItemApi.GenerateFamilyItemsAsync(new { FamilyID = "FAMILY001" }).ConfigureAwait(false);
+            var hr = await CatalogueItemApi.GenerateFamilyItemsAsync(new { FamilyID = "FAMILY001" }).ConfigureAwait(false);
             var msgCode = await hr.GetResultAsync().ConfigureAwait(false);
             Assert.IsTrue(msgCode.IsSuccess());
         }
