@@ -15,7 +15,7 @@ namespace ElasticSearch
         #region -  Lazy Object(s)  -
 
         private static readonly Lazy<ICatalogueItemQDAL> _lazyCatalogueItemQDAL = ObjectContainer.LazyResolve<ICatalogueItemQDAL>();
-        private ICatalogueItemQDAL _CatalogueItemQDAL => _lazyCatalogueItemQDAL.Value;
+        private ICatalogueItemQDAL CatalogueItemQDAL => _lazyCatalogueItemQDAL.Value;
 
         #endregion
         // *******************************************************************************************************************************
@@ -36,7 +36,7 @@ namespace ElasticSearch
             //var resp = await ElasticClient.BulkAsync(x => x.Index("catalogue_items").IndexMany(items)).ConfigureAwait(false);
             //Assert.IsTrue(resp.IsValid);
 
-            var msgCode = await _CatalogueItemQDAL.BulkInsertItemsAsync(items).ConfigureAwait(false);
+            var msgCode = await CatalogueItemQDAL.BulkInsertItemsAsync(items).ConfigureAwait(false);
             Assert.IsTrue(msgCode.IsSuccess());
         }
 
@@ -47,7 +47,7 @@ namespace ElasticSearch
         [Test]
         public async Task GetFamilyItems()
         {
-            var list = await _CatalogueItemQDAL.GetFamilyItemsAsync("FAMILY001").ConfigureAwait(false);
+            var list = await CatalogueItemQDAL.GetFamilyItemsAsync("FAMILY001").ConfigureAwait(false);
             Assert.IsTrue(list.Any());
         }
 
@@ -58,7 +58,7 @@ namespace ElasticSearch
         [Test]
         public async Task DeleteFamilyItems()
         {
-            var list = await _CatalogueItemQDAL.DeleteFamilyItemsAsync("FAMILY001").ConfigureAwait(false);
+            var list = await CatalogueItemQDAL.DeleteFamilyItemsAsync("FAMILY001").ConfigureAwait(false);
             Assert.IsTrue(list.IsSuccess());
         }
 
@@ -76,7 +76,7 @@ namespace ElasticSearch
             var list = resp.Documents.ToList();
             Assert.IsTrue(list.Any());
 
-            await _CatalogueItemQDAL.SearchAsync();
+            await CatalogueItemQDAL.SearchAsync();
         }
 
         #endregion

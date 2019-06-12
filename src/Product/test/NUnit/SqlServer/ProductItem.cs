@@ -16,7 +16,7 @@ namespace SqlServer
         #region -  Lazy Object(s)  -
 
         private static readonly Lazy<IProductItemMDAL> _lazyProductItemMDAL = ObjectContainer.LazyResolve<IProductItemMDAL>();
-        private IProductItemMDAL _ProductItemMDAL => _lazyProductItemMDAL.Value;
+        private IProductItemMDAL ProductItemMDAL => _lazyProductItemMDAL.Value;
 
         #endregion
         // *******************************************************************************************************************************
@@ -35,7 +35,7 @@ namespace SqlServer
                 var imageHashes = Enumerable.Range(1, maxImageHashs).Select(i =>
                 {
                     return (i, Guid.NewGuid().ToLowerNString());
-                }).ToDictionary(x => x.Item1 - 1, x => x.Item2);
+                }).ToDictionary(x => x.i - 1, x => x.Item2);
 
                 var b = Enumerable.Range(1, maxItems).Select(async itemId =>
                 {
@@ -45,7 +45,7 @@ namespace SqlServer
                     cmd.ImageHash = imageHashes[new Random().Next(0, maxImageHashs - 1)];
                     cmd.ImageUrl = $"{cmd.ImageHash}.jpg";
 
-                    var msgCode = await _ProductItemMDAL.InsertAsync(cmd).ConfigureAwait(false);
+                    var msgCode = await ProductItemMDAL.InsertAsync(cmd).ConfigureAwait(false);
                     Assert.IsTrue(msgCode.IsSuccess());
                     return msgCode;
                 });
