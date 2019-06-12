@@ -68,8 +68,10 @@ namespace SyncSoft.Olliix.Product.Domain.Catalogue.GenerateItem
                 if (!msgCode.IsSuccess()) throw new Exception(msgCode);
                 // ^^^^^^^^^^
             }
-
-            throw new Exception($"Cannot find family '{familyId}'");
+            else
+            {
+                throw new Exception($"Cannot find family '{familyId}'");
+            }
         }
 
         #endregion

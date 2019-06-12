@@ -20,7 +20,7 @@ namespace SyncSoft.Olliix.Product.SqlServer.ProductFamily
         public async Task<string> InsertAsync(CreateProductFamilyCommand cmd)
         {
             return await base.TryExecuteAsync(
-                "INSERT INTO ProductFamilies (ID, Name, Brand) VALUES(@ID, @Name, @Brand)",
+                "INSERT INTO ProductFamilies (ID, Name, Brand, Room) VALUES(@ID, @Name, @Brand, @Room)",
                 cmd).ConfigureAwait(false);
         }
 

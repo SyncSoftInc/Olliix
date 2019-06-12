@@ -2,7 +2,6 @@
 using SyncSoft.App.Components;
 using SyncSoft.Olliix.Product.API.Catalogue;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace API
@@ -20,12 +19,9 @@ namespace API
         [Test]
         public async Task Generate()
         {
-            var hr = await _CatalogueItemApi.GenerateFamilyItemsAsync(new { FamilyID = "11111" }).ConfigureAwait(false);
-            var msgCodes = await hr.GetResultAsync().ConfigureAwait(false);
-            msgCodes.ForEach(x =>
-            {
-                Assert.IsTrue(x.IsSuccess());
-            });
+            var hr = await _CatalogueItemApi.GenerateFamilyItemsAsync(new { FamilyID = "FAMILY001" }).ConfigureAwait(false);
+            var msgCode = await hr.GetResultAsync().ConfigureAwait(false);
+            Assert.IsTrue(msgCode.IsSuccess());
         }
     }
 }
