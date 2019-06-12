@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SyncSoft.Olliix.Product.API
+namespace SyncSoft.Olliix.Product.API.ProductItem
 {
     public interface IProductItemApi
     {

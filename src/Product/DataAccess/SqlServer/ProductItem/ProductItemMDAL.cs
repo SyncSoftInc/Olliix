@@ -1,7 +1,8 @@
 ﻿using Dapper;
 using SyncSoft.Olliix.Product.Command.ProductItem;
-using SyncSoft.Olliix.Product.DataAccess;
-using SyncSoft.Olliix.Product.DTO;
+using SyncSoft.Olliix.Product.DataAccess.ProductItem;
+using SyncSoft.Olliix.Product.DTO.ProductFamily;
+using SyncSoft.Olliix.Product.DTO.ProductItem;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
@@ -65,6 +66,7 @@ namespace SyncSoft.Olliix.Product.SqlServer.ProductItem
                 {
                     f.Name = i.Name;
                     f.Brand = i.Brand;
+                    f.Room = i.Room;
                     f.Items.Add(i);
                     return f;
                 });

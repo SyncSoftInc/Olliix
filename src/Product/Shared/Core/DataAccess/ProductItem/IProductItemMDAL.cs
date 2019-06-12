@@ -1,8 +1,8 @@
 ﻿using SyncSoft.Olliix.Product.Command.ProductItem;
-using SyncSoft.Olliix.Product.DTO;
+using SyncSoft.Olliix.Product.DTO.ProductFamily;
 using System.Threading.Tasks;
 
-namespace SyncSoft.Olliix.Product.DataAccess
+namespace SyncSoft.Olliix.Product.DataAccess.ProductItem
 {
     public interface IProductItemMDAL
     {

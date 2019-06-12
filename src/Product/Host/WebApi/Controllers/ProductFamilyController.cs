@@ -2,8 +2,8 @@
 using SyncSoft.App.Components;
 using SyncSoft.ECP.AspNetCore.Mvc.Controllers;
 using SyncSoft.Olliix.Product.Command.ProductFamily;
-using SyncSoft.Olliix.Product.DataFacade;
-using SyncSoft.Olliix.Product.DTO;
+using SyncSoft.Olliix.Product.DataFacade.ProductItem;
+using SyncSoft.Olliix.Product.DTO.ProductFamily;
 using System;
 using System.Threading.Tasks;
 

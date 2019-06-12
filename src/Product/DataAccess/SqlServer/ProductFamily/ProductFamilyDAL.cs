@@ -1,5 +1,5 @@
 ﻿using SyncSoft.Olliix.Product.Command.ProductFamily;
-using SyncSoft.Olliix.Product.DataAccess;
+using SyncSoft.Olliix.Product.DataAccess.ProductFamily;
 using System.Threading.Tasks;
 
 namespace SyncSoft.Olliix.Product.SqlServer.ProductFamily

@@ -2,7 +2,7 @@
 using SyncSoft.App.Components;
 using SyncSoft.ECP.AspNetCore.Mvc.Controllers;
 using SyncSoft.Olliix.Product.Command.ProductItem;
-using SyncSoft.Olliix.Product.DataFacade;
+using SyncSoft.Olliix.Product.DataFacade.ProductItem;
 using System;
 using System.Threading.Tasks;
 

@@ -1,6 +1,6 @@
 ﻿using SyncSoft.App.Components;
 using SyncSoft.App.EngineConfigs;
-using SyncSoft.Olliix.Product.DataAccess;
+using SyncSoft.Olliix.Product.DataAccess.Catalogue;
 using SyncSoft.Olliix.Product.ElasticSearch.Catalogue;
 
 namespace SyncSoft.App

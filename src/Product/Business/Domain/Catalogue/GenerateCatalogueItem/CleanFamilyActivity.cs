@@ -1,7 +1,7 @@
 ﻿using SyncSoft.App.Components;
 using SyncSoft.App.Transactions;
-using SyncSoft.Olliix.Product.DataAccess;
-using SyncSoft.Olliix.Product.DTO;
+using SyncSoft.Olliix.Product.DataAccess.Catalogue;
+using SyncSoft.Olliix.Product.DTO.Catalogue;
 using System;
 using System.Collections.Generic;
 using System.Linq;

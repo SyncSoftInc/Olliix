@@ -1,9 +1,9 @@
 ﻿using SyncSoft.ECP.DTOs;
-using SyncSoft.Olliix.Product.DTO;
+using SyncSoft.Olliix.Product.DTO.Catalogue;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SyncSoft.Olliix.Product.DataAccess
+namespace SyncSoft.Olliix.Product.DataAccess.Catalogue
 {
     public interface ICatalogueItemQDAL
     {

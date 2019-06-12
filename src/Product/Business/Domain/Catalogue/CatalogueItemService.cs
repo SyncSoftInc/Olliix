@@ -1,12 +1,12 @@
 ﻿using SyncSoft.App.Components;
-using SyncSoft.Olliix.Product.Command.ProductItem;
+using SyncSoft.Olliix.Product.Command.Catalogue;
 using SyncSoft.Olliix.Product.DataAccess.ProductItem;
 using System;
 using System.Threading.Tasks;
 
-namespace SyncSoft.Olliix.Product.Domain.ProductItem
+namespace SyncSoft.Olliix.Product.Domain.Catalogue
 {
-    public class ProductItemService : IProductItemService
+    public class CatalogueItemService : ICatalogueItemService
     {
         // *******************************************************************************************************************************
         #region -  Lazy Object(s)  -
@@ -18,9 +18,9 @@ namespace SyncSoft.Olliix.Product.Domain.ProductItem
         // *******************************************************************************************************************************
         #region -  Create  -
 
-        public async Task<string> CreateProductItemAsync(CreateProductItemCommand cmd)
+        public async Task<string> GenerateByFamilyAsync(GenerateCatalogueItemCommand cmd)
         {
-            return await _ProductItemMDAL.InsertAsync(cmd).ConfigureAwait(false);
+            throw new NotImplementedException();
         }
 
         #endregion

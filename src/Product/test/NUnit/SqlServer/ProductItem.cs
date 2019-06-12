@@ -3,7 +3,7 @@ using NUnit.Framework;
 using SyncSoft.App.Components;
 using SyncSoft.Olliix;
 using SyncSoft.Olliix.Product.Command.ProductItem;
-using SyncSoft.Olliix.Product.DataAccess;
+using SyncSoft.Olliix.Product.DataAccess.ProductItem;
 using System;
 using System.Linq;
 using System.Threading.Tasks;

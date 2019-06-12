@@ -8,4 +8,12 @@
     <ProjectReference Include="..\..\..\Shared\Core\SyncSoft.Olliix.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="API\Catalogue\" />
+    <Folder Include="DataFacade\Catalogue\" />
+    <Folder Include="DataFacade\ProductFamily\" />
+    <Folder Include="Query\ProductFamily\" />
+    <Folder Include="Query\ProductItem\" />
+  </ItemGroup>
+
 </Project>

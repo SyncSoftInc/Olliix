@@ -1,6 +1,6 @@
 ﻿using SyncSoft.Olliix.Product.Enum;
 
-namespace SyncSoft.Olliix.Product.DTO
+namespace SyncSoft.Olliix.Product.DTO.ProductItem
 {
     public class ProductItemDTO
     {
@@ -10,6 +10,7 @@ namespace SyncSoft.Olliix.Product.DTO
         public string ItemNo { get; set; }
         public string Size { get; set; }
         public string Color { get; set; }
+        public string Room { get; set; }
         public string ImageHash { get; set; }
         public string ImageUrl { get; set; }
         public string UPC { get; set; }

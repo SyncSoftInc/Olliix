@@ -1,6 +1,8 @@
 ﻿using SyncSoft.App.Components;
 using SyncSoft.App.EngineConfigs;
 using SyncSoft.Olliix.Product.API;
+using SyncSoft.Olliix.Product.API.ProductFamily;
+using SyncSoft.Olliix.Product.API.ProductItem;
 
 namespace SyncSoft.App
 {

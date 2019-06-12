@@ -1,7 +1,7 @@
 ﻿using SyncSoft.Olliix.Product.Command.ProductItem;
 using System.Threading.Tasks;
 
-namespace SyncSoft.Olliix.Product.Domain
+namespace SyncSoft.Olliix.Product.Domain.ProductItem
 {
     public interface IProductItemService
     {

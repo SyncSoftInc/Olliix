@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
 using SyncSoft.App.Components;
 using SyncSoft.Olliix;
-using SyncSoft.Olliix.Product.DataAccess;
-using SyncSoft.Olliix.Product.DTO;
+using SyncSoft.Olliix.Product.DataAccess.Catalogue;
+using SyncSoft.Olliix.Product.DTO.Catalogue;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,7 +28,7 @@ namespace ElasticSearch
             {
                 var dto = Mock.CreateWithRandomData<CatalogueItemDTO>();
                 dto.Family_ID = TestUtils.CreateFamilyID(i / 3 + 1);
-                dto.ItemNo = TestUtils.CreateItemNo(dto.Family_ID, i);
+                //dto.ItemNo = TestUtils.CreateItemNo(dto.Family_ID, i);
                 return dto;
             });
 

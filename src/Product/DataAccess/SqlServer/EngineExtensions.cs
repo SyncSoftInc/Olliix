@@ -1,6 +1,7 @@
 ﻿using SyncSoft.App.Components;
 using SyncSoft.App.EngineConfigs;
-using SyncSoft.Olliix.Product.DataAccess;
+using SyncSoft.Olliix.Product.DataAccess.ProductFamily;
+using SyncSoft.Olliix.Product.DataAccess.ProductItem;
 using SyncSoft.Olliix.Product.SqlServer;
 using SyncSoft.Olliix.Product.SqlServer.ProductFamily;
 using SyncSoft.Olliix.Product.SqlServer.ProductItem;

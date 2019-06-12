@@ -1,7 +1,7 @@
 ﻿using SyncSoft.App.Components;
 using SyncSoft.App.Messaging;
 using SyncSoft.Olliix.Product.Command.ProductItem;
-using SyncSoft.Olliix.Product.Domain;
+using SyncSoft.Olliix.Product.Domain.ProductItem;
 using System;
 using System.Threading.Tasks;
 
