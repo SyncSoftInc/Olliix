@@ -5,9 +5,9 @@ using SyncSoft.Olliix.Product.Command.Catalogue;
 using System;
 using System.Collections.Generic;
 
-namespace SyncSoft.Olliix.Product.Domain.Catalogue
+namespace SyncSoft.Olliix.Product.Domain.Catalogue.GenerateItem
 {
-    public class Transaction : TccTransaction
+    public class GenerateItemTransaction : TccTransaction
     {
         // *******************************************************************************************************************************
         #region -  Lazy Object(s)  -
@@ -19,7 +19,7 @@ namespace SyncSoft.Olliix.Product.Domain.Catalogue
         // *******************************************************************************************************************************
         #region -  Constructor(s)  -
 
-        public Transaction(GenerateCatalogueItemCommand command)
+        public GenerateItemTransaction(GenerateCatalogueItemCommand command)
             : base(command.CorrelationId)
         {
             Context.Set("FamilyID", command.FamilyID);

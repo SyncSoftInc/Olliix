@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SyncSoft.Olliix.Product.Domain.Catalogue
+namespace SyncSoft.Olliix.Product.Domain.Catalogue.GenerateItem
 {
     public class CleanFamilyActivity : TccActivity
     {

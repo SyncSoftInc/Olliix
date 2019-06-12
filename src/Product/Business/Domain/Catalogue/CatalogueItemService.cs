@@ -1,4 +1,5 @@
 ﻿using SyncSoft.Olliix.Product.Command.Catalogue;
+using SyncSoft.Olliix.Product.Domain.Catalogue.GenerateItem;
 using System.Threading.Tasks;
 
 namespace SyncSoft.Olliix.Product.Domain.Catalogue
@@ -17,7 +18,7 @@ namespace SyncSoft.Olliix.Product.Domain.Catalogue
 
         public async Task<string> GenerateByFamilyAsync(GenerateCatalogueItemCommand cmd)
         {
-            var tran = new Transaction(cmd);
+            var tran = new GenerateItemTransaction(cmd);
             await tran.RunAsync().ConfigureAwait(false);
 
             return tran.IsSuccess ? MsgCodes.SUCCESS : string.Join("\n", tran.ReadLogs());
