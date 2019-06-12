@@ -2,7 +2,7 @@
 using SyncSoft.App;
 using SyncSoft.Olliix;
 
-namespace DataAccess
+namespace ElasticSearch
 {
     [SetUpFixture]
     public class Setup
@@ -11,9 +11,7 @@ namespace DataAccess
         public static void Startup()
         {
             OlliixEngine.Init()
-                .UseProductSqlServer()
                 .UseProductES()
-                .UseProductRedis()
                 .Start();
         }
     }

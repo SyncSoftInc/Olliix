@@ -12,9 +12,10 @@ namespace SyncSoft.Olliix.Product.Domain.Catalogue
         private static readonly Lazy<ICatalogueItemQDAL> _lazyCatalogueItemQDAL = ObjectContainer.LazyResolve<ICatalogueItemQDAL>();
         private ICatalogueItemQDAL _CatalogueItemQDAL => _lazyCatalogueItemQDAL.Value;
 
-        protected override Task RunAsync(CancellationToken? cancellationToken)
+        protected override async Task RunAsync(CancellationToken? cancellationToken)
         {
-            throw new System.NotImplementedException();
+            var familyId = Context.Get<string>("FamilyID");
+            await _CatalogueItemQDAL.DeleteFamilyItemsAsync(familyId).ConfigureAwait(false);
         }
 
         protected override Task RollbackAsync()

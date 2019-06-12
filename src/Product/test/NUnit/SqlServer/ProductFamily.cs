@@ -1,13 +1,14 @@
 ﻿using Dapper;
 using NUnit.Framework;
 using SyncSoft.App.Components;
+using SyncSoft.Olliix;
 using SyncSoft.Olliix.Product.Command.ProductFamily;
 using SyncSoft.Olliix.Product.DataAccess;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DataAccess
+namespace SqlServer
 {
     public class ProductFamily : DALTestBase
     {
@@ -31,7 +32,7 @@ namespace DataAccess
             var tasks = Enumerable.Range(1, 200).Select(async i =>
             {
                 var cmd = Mock.CreateWithRandomData<CreateProductFamilyCommand>();
-                cmd.ID = $"{TestEnv.Family_IdPrefix}{i:D3}";
+                cmd.ID = TestUtils.CreateFamilyID(i);
                 var msgCode = await _ProductFamilyMDAL.InsertAsync(cmd).ConfigureAwait(false);
                 Assert.IsTrue(msgCode.IsSuccess());
                 return msgCode;
@@ -43,7 +44,7 @@ namespace DataAccess
         [Test, Order(0)]
         public void Cleanup()
         {
-            Connection.Execute(sql: $"DELETE FROM ProductFamilies WHERE ID LIKE '{TestEnv.Family_IdPrefix}%'");
+            Connection.Execute(sql: $"DELETE FROM ProductFamilies WHERE ID LIKE '{TestUtils.Family_IdPrefix}%'");
         }
     }
 }

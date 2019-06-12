@@ -1,12 +1,15 @@
 ﻿using NUnit.Framework;
+using SyncSoft.App.Components;
+using SyncSoft.Olliix.Product.SqlServer;
 using System;
 using System.Data;
 
-namespace DataAccess
+namespace SqlServer
 {
     public abstract class DALTestBase
     {
-        private readonly Lazy<IDbConnection> _lazyConnection = new Lazy<IDbConnection>(() => TestEnv.ProductDB.CreateConnection());
+        private readonly Lazy<IDbConnection> _lazyConnection = new Lazy<IDbConnection>(() =>
+            ObjectContainer.Resolve<IProductDB>().CreateConnection());
         protected IDbConnection Connection => _lazyConnection.Value;
 
         [TearDown]

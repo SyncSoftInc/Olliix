@@ -1,13 +1,14 @@
 ﻿using Dapper;
 using NUnit.Framework;
 using SyncSoft.App.Components;
+using SyncSoft.Olliix;
 using SyncSoft.Olliix.Product.Command.ProductItem;
 using SyncSoft.Olliix.Product.DataAccess;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DataAccess
+namespace SqlServer
 {
     public class ProductItem : DALTestBase
     {
@@ -39,7 +40,7 @@ namespace DataAccess
                 var b = Enumerable.Range(1, maxItems).Select(async itemId =>
                 {
                     var cmd = Mock.CreateWithRandomData<CreateProductItemCommand>();
-                    cmd.ItemNo = $"{familyId}:{TestEnv.Item_IdPrefix}{itemId:D3}";
+                    cmd.ItemNo = TestUtils.CreateItemNo(familyId, itemId);
                     cmd.Family_ID = familyId;
                     cmd.ImageHash = imageHashes[new Random().Next(0, maxImageHashs - 1)];
                     cmd.ImageUrl = $"{cmd.ImageHash}.jpg";
@@ -62,7 +63,7 @@ namespace DataAccess
         [Test, Order(0)]
         public void Cleanup()
         {
-            Connection.Execute(sql: $"DELETE FROM ProductItems WHERE Family_ID LIKE '{TestEnv.Family_IdPrefix}%'");
+            Connection.Execute(sql: $"DELETE FROM ProductItems WHERE Family_ID LIKE '{TestUtils.Family_IdPrefix}%'");
         }
 
         #endregion

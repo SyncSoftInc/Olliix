@@ -1,4 +1,7 @@
-﻿using SyncSoft.App.EngineConfigs;
+﻿using SyncSoft.App.Components;
+using SyncSoft.App.EngineConfigs;
+using SyncSoft.Olliix.Product.DataAccess;
+using SyncSoft.Olliix.Product.ElasticSearch.Catalogue;
 
 namespace SyncSoft.App
 {
@@ -10,6 +13,7 @@ namespace SyncSoft.App
 
             configurator.Engine.Starting += (o, e) =>
             {
+                ObjectContainer.Register<ICatalogueItemQDAL, CatalogueItemDAL>(LifeCycleEnum.Singleton);
             };
 
             return configurator;

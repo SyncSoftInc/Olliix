@@ -3,11 +3,13 @@
     public class CatalogueItemDTO
     {
         public string Name { get; set; }
+        public string ItemNo { get; set; }
+        public string Family_ID { get; set; }
+        public string ImageHash { get; set; }
         public string ImageUrl { get; set; }
         public string DetailUrl { get; set; }
         public string BrandUrl { get; set; }
         public string Brand { get; set; }
-        public string ItemNo { get; set; }
         public string Size { get; set; }
         public string Color { get; set; }
         public decimal Price { get; set; }
