@@ -14,7 +14,7 @@ namespace SyncSoft.Olliix.Product.Consumer.ProductItem
         #region -  Lazy Object(s)  -
 
         private static readonly Lazy<IProductItemService> _lazyProductItemService = ObjectContainer.LazyResolve<IProductItemService>();
-        private IProductItemService _ProductItemService => _lazyProductItemService.Value;
+        private IProductItemService ProductItemService => _lazyProductItemService.Value;
 
         #endregion
         // *******************************************************************************************************************************
@@ -24,7 +24,7 @@ namespace SyncSoft.Olliix.Product.Consumer.ProductItem
         {
             var msg = context.Message;
 
-            return await _ProductItemService.CreateProductItemAsync(msg).ConfigureAwait(false);
+            return await ProductItemService.CreateProductItemAsync(msg).ConfigureAwait(false);
         }
 
         #endregion

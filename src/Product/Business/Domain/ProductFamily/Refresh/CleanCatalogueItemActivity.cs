@@ -8,9 +8,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SyncSoft.Olliix.Product.Domain.Catalogue.GenerateItem
+namespace SyncSoft.Olliix.Product.Domain.ProductFamily.Refresh
 {
-    public class CleanFamilyActivity : TccActivity
+    public class CleanCatalogueItemActivity : TccActivity
     {
         // *******************************************************************************************************************************
         #region -  Lazy Object(s)  -

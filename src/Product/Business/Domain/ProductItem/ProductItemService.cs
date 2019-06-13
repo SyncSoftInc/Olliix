@@ -12,7 +12,7 @@ namespace SyncSoft.Olliix.Product.Domain.ProductItem
         #region -  Lazy Object(s)  -
 
         private static readonly Lazy<IProductItemMDAL> _lazyProductItemMDAL = ObjectContainer.LazyResolve<IProductItemMDAL>();
-        private IProductItemMDAL _ProductItemMDAL => _lazyProductItemMDAL.Value;
+        private IProductItemMDAL ProductItemMDAL => _lazyProductItemMDAL.Value;
 
         #endregion
         // *******************************************************************************************************************************
@@ -20,7 +20,7 @@ namespace SyncSoft.Olliix.Product.Domain.ProductItem
 
         public async Task<string> CreateProductItemAsync(CreateProductItemCommand cmd)
         {
-            return await _ProductItemMDAL.InsertAsync(cmd).ConfigureAwait(false);
+            return await ProductItemMDAL.InsertAsync(cmd).ConfigureAwait(false);
         }
 
         #endregion

@@ -4,6 +4,7 @@ using SyncSoft.App.Components;
 using SyncSoft.Olliix;
 using SyncSoft.Olliix.Product.Command.ProductFamily;
 using SyncSoft.Olliix.Product.DataAccess.ProductFamily;
+using SyncSoft.Olliix.Product.DTO.ProductFamily;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,7 +34,13 @@ namespace SqlServer
             {
                 var cmd = Mock.CreateWithRandomData<CreateProductFamilyCommand>();
                 cmd.ID = TestUtils.CreateFamilyID(i);
-                var msgCode = await ProductFamilyMDAL.InsertAsync(cmd).ConfigureAwait(false);
+                var msgCode = await ProductFamilyMDAL.InsertAsync(new ProductFamilyDTO
+                {
+                    ID = cmd.ID,
+                    Name = cmd.Name,
+                    Brand = cmd.Brand,
+                    Room = cmd.Room,
+                }).ConfigureAwait(false);
                 Assert.IsTrue(msgCode.IsSuccess());
                 return msgCode;
             }).ToArray();

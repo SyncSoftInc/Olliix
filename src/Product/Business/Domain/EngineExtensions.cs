@@ -1,6 +1,6 @@
 ﻿using SyncSoft.App.Components;
 using SyncSoft.App.EngineConfigs;
-using SyncSoft.Olliix.Product.Domain.Catalogue;
+using SyncSoft.Olliix.Product.Domain.ProductFamily;
 using SyncSoft.Olliix.Product.Domain.ProductItem;
 
 namespace SyncSoft.App
@@ -12,7 +12,8 @@ namespace SyncSoft.App
             configurator.Engine.Starting += (o, e) =>
             {
                 ObjectContainer.Register<IProductItemService, ProductItemService>(LifeCycleEnum.Singleton);
-                ObjectContainer.Register<ICatalogueItemService, CatalogueItemService>(LifeCycleEnum.Singleton);
+                ObjectContainer.Register<IProductFamilyService, ProductFamilyService>(LifeCycleEnum.Singleton);
+                //ObjectContainer.Register<ICatalogueItemService, CatalogueItemService>(LifeCycleEnum.Singleton);
             };
 
             return configurator;

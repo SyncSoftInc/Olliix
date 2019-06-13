@@ -1,5 +1,4 @@
-﻿using SyncSoft.Olliix.Product.Command.ProductFamily;
-using SyncSoft.Olliix.Product.DataAccess.ProductFamily;
+﻿using SyncSoft.Olliix.Product.DataAccess.ProductFamily;
 using SyncSoft.Olliix.Product.DTO.ProductFamily;
 using SyncSoft.Olliix.Product.DTO.ProductItem;
 using System.Linq;
@@ -20,33 +19,33 @@ namespace SyncSoft.Olliix.Product.SqlServer.ProductFamily
         // *******************************************************************************************************************************
         #region -  CURD  -
 
-        public async Task<string> InsertAsync(CreateProductFamilyCommand cmd)
+        public async Task<string> InsertAsync(ProductFamilyDTO dto)
         {
             return await base.TryExecuteAsync(
                 "INSERT INTO ProductFamilies (ID, Name, Brand, Room) VALUES(@ID, @Name, @Brand, @Room)",
-                cmd).ConfigureAwait(false);
+                dto).ConfigureAwait(false);
         }
 
-        public async Task<string> UpdateAsync(ProductFamilyDTO dto)
-        {
-            return await base.TryExecuteAsync(
-@"UPDATE [ProductFamilies] SET 
-ID = @ID
-, Name = @Name
-, Brand = @Brand
-, Room = @Room
-, Flags = @Flags
-WHERE ID = @ID", dto).ConfigureAwait(false);
-        }
+//        public async Task<string> UpdateAsync(ProductFamilyDTO dto)
+//        {
+//            return await base.TryExecuteAsync(
+//@"UPDATE [ProductFamilies] SET 
+//ID = @ID
+//, Name = @Name
+//, Brand = @Brand
+//, Room = @Room
+//, Flags = @Flags
+//WHERE ID = @ID", dto).ConfigureAwait(false);
+//        }
 
-        public async Task<ProductFamilyDTO> GetFamilyAsync(string id)
-        {
-            var query = await base.TryQueryFirstOrDefaultAsync<ProductFamilyDTO>("SELECT * FROM [ProductFamilies] WHERE ID = @ID", new
-            {
-                ID = id
-            }).ConfigureAwait(false);
-            return query.Result;
-        }
+        //public async Task<ProductFamilyDTO> GetFamilyAsync(string id)
+        //{
+        //    var query = await base.TryQueryFirstOrDefaultAsync<ProductFamilyDTO>("SELECT * FROM [ProductFamilies] WHERE ID = @ID", new
+        //    {
+        //        ID = id
+        //    }).ConfigureAwait(false);
+        //    return query.Result;
+        //}
 
         public async Task<ProductFamilyDTO> GetFamilyWithItemsAsync(string familyId)
         {
@@ -77,12 +76,25 @@ WHERE ID = @ID", dto).ConfigureAwait(false);
         // *******************************************************************************************************************************
         #region -  RemoveFlags  -
 
-        public async Task<string> RemoveFlagAsync(string id, int flag)
+        public async Task<string> RemoveFlagsAsync(string id, int flags)
         {
-            return await base.TryExecuteAsync("UPDATE [ProductFamilies] SET Flags = Flags ^ @Flag WHERE ID = @ID", new
+            return await base.TryExecuteAsync("UPDATE [ProductFamilies] SET Flags = Flags ^ @Flags WHERE ID = @ID", new
             {
                 ID = id,
-                Flag = flag
+                Flags = flags
+            }).ConfigureAwait(false);
+        }
+
+        #endregion
+        // *******************************************************************************************************************************
+        #region -  AddFlags  -
+
+        public async Task<string> AddFlagsAsync(string id, int flags)
+        {
+            return await base.TryExecuteAsync("UPDATE [ProductFamilies] SET Flags = Flags | @Flags WHERE ID = @ID", new
+            {
+                ID = id,
+                Flags = flags
             }).ConfigureAwait(false);
         }
 

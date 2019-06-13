@@ -1,4 +1,7 @@
-﻿using SyncSoft.App.EngineConfigs;
+﻿using SyncSoft.App.Components;
+using SyncSoft.App.EngineConfigs;
+using SyncSoft.Olliix.Product.DataAccess.ProductFamily;
+using SyncSoft.Olliix.Product.Redis.ProductFamily;
 
 namespace SyncSoft.App
 {
@@ -8,6 +11,8 @@ namespace SyncSoft.App
         {
             configurator.Engine.Starting += (o, e) =>
             {
+                ObjectContainer.Register<IProductFamilyDB, ProductFamilyDB>(LifeCycleEnum.Singleton);
+                ObjectContainer.Register<IProductFamilyQDAL, ProductFamilyQDAL>(LifeCycleEnum.Singleton);
             };
 
             return configurator;

@@ -1,13 +1,13 @@
 ﻿using SyncSoft.App.Components;
 using SyncSoft.App.Logging;
 using SyncSoft.App.Transactions;
-using SyncSoft.Olliix.Product.Command.Catalogue;
+using SyncSoft.Olliix.Product.Command.ProductFamily;
 using System;
 using System.Collections.Generic;
 
-namespace SyncSoft.Olliix.Product.Domain.Catalogue.GenerateItem
+namespace SyncSoft.Olliix.Product.Domain.ProductFamily.Refresh
 {
-    public class GenerateItemTransaction : TccTransaction
+    public class RefreshTransaction : TccTransaction
     {
         // *******************************************************************************************************************************
         #region -  Lazy Object(s)  -
@@ -19,7 +19,7 @@ namespace SyncSoft.Olliix.Product.Domain.Catalogue.GenerateItem
         // *******************************************************************************************************************************
         #region -  Constructor(s)  -
 
-        public GenerateItemTransaction(GenerateCatalogueItemCommand command)
+        public RefreshTransaction(RefreshProductFamilyCommand command)
             : base(command.CorrelationId)
         {
             Context.Set("FamilyID", command.FamilyID);
@@ -31,7 +31,7 @@ namespace SyncSoft.Olliix.Product.Domain.Catalogue.GenerateItem
 
         protected override IEnumerable<TransactionActivity> BuildActivities()
         {
-            yield return new CleanFamilyActivity();
+            yield return new CleanCatalogueItemActivity();
             yield return new GenerateItemsActivity();
             yield return new RemoveFlagActivity();
         }
