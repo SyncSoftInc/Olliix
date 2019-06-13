@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <Folder Include="DataFacade\Catalogue\" />
-    <Folder Include="DataFacade\ProductFamily\" />
     <Folder Include="Query\ProductFamily\" />
     <Folder Include="Query\ProductItem\" />
   </ItemGroup>
