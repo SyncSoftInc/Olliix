@@ -19,7 +19,7 @@ namespace API
         [Test]
         public async Task GenerateFamilyItems()
         {
-            var hr = await CatalogueItemApi.GenerateFamilyItemsAsync(new { FamilyID = "FAMILY001" }).ConfigureAwait(false);
+            var hr = await CatalogueItemApi.GenerateFamilyItemsAsync(new { FamilyID = "FAMILY011" }).ConfigureAwait(false);
             var msgCode = await hr.GetResultAsync().ConfigureAwait(false);
             Assert.IsTrue(msgCode.IsSuccess());
         }

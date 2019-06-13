@@ -19,6 +19,12 @@ namespace ElasticSearch
 
         #endregion
         // *******************************************************************************************************************************
+        #region -  Field(s)  -
+
+        private const string IndexName = "olx_catalogue_items";
+
+        #endregion
+        // *******************************************************************************************************************************
         #region -  BuilkInsert  -
 
         [Test]
@@ -33,7 +39,7 @@ namespace ElasticSearch
             });
 
             //var msgCode = await _CatalogueItemQDAL.BulkInsertItemsAsync(items).ConfigureAwait(false);
-            //var resp = await ElasticClient.BulkAsync(x => x.Index("catalogue_items").IndexMany(items)).ConfigureAwait(false);
+            //var resp = await ElasticClient.BulkAsync(x => x.Index(IndexName).IndexMany(items)).ConfigureAwait(false);
             //Assert.IsTrue(resp.IsValid);
 
             var msgCode = await CatalogueItemQDAL.BulkInsertItemsAsync(items).ConfigureAwait(false);
@@ -70,7 +76,7 @@ namespace ElasticSearch
         public async Task Search()
         {
             var resp = await ElasticClient.SearchAsync<CatalogueItemDTO>(x =>
-                x.Index("catalogue_items")
+                x.Index(IndexName)
                  .Query(q => q.Prefix("Family_ID", $"{TestUtils.Family_IdPrefix.ToLower()}"))
             ).ConfigureAwait(false);
             var list = resp.Documents.ToList();
@@ -87,7 +93,7 @@ namespace ElasticSearch
         public void Cleanup()
         {
             var resp = ElasticClient.DeleteByQuery<CatalogueItemDTO>(x =>
-                x.Index("catalogue_items")
+                x.Index(IndexName)
                  .Query(q => q.Prefix("Family_ID", $"{TestUtils.Family_IdPrefix.ToLower()}"))
             );
             Assert.IsTrue(resp.IsValid);

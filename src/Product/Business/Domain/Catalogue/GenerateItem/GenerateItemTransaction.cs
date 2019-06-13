@@ -33,6 +33,7 @@ namespace SyncSoft.Olliix.Product.Domain.Catalogue.GenerateItem
         {
             yield return new CleanFamilyActivity();
             yield return new GenerateItemsActivity();
+            yield return new RemoveFlagActivity();
         }
 
         #endregion

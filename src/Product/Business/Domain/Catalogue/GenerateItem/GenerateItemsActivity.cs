@@ -1,7 +1,7 @@
 ﻿using SyncSoft.App.Components;
 using SyncSoft.App.Transactions;
 using SyncSoft.Olliix.Product.DataAccess.Catalogue;
-using SyncSoft.Olliix.Product.DataAccess.ProductItem;
+using SyncSoft.Olliix.Product.DataAccess.ProductFamily;
 using SyncSoft.Olliix.Product.DTO.Catalogue;
 using System;
 using System.Linq;
@@ -15,8 +15,8 @@ namespace SyncSoft.Olliix.Product.Domain.Catalogue.GenerateItem
         // *******************************************************************************************************************************
         #region -  Lazy Object(s)  -
 
-        private static readonly Lazy<IProductItemMDAL> _lazyProductItemMDAL = ObjectContainer.LazyResolve<IProductItemMDAL>();
-        private IProductItemMDAL ProductItemMDAL => _lazyProductItemMDAL.Value;
+        private static readonly Lazy<IProductFamilyMDAL> _lazyProductFamilyMDAL = ObjectContainer.LazyResolve<IProductFamilyMDAL>();
+        private IProductFamilyMDAL ProductFamilyMDAL => _lazyProductFamilyMDAL.Value;
 
         private static readonly Lazy<ICatalogueItemQDAL> _lazyCatalogueItemQDAL = ObjectContainer.LazyResolve<ICatalogueItemQDAL>();
         private ICatalogueItemQDAL CatalogueItemQDAL => _lazyCatalogueItemQDAL.Value;
@@ -35,7 +35,7 @@ namespace SyncSoft.Olliix.Product.Domain.Catalogue.GenerateItem
         {
             var familyId = Context.Get<string>("FamilyID");
 
-            var family = await ProductItemMDAL.GetFamilyWithItemsAsync(familyId).ConfigureAwait(false);
+            var family = await ProductFamilyMDAL.GetFamilyWithItemsAsync(familyId).ConfigureAwait(false);
             if (family.IsNotNull() && family.Items.IsPresent())
             {
                 var catalogueItems = family.Items
@@ -78,7 +78,16 @@ namespace SyncSoft.Olliix.Product.Domain.Catalogue.GenerateItem
         // *******************************************************************************************************************************
         #region -  Rollback  -
 
-        protected override Task RollbackAsync() => Task.CompletedTask;  // 最后一步不需要回滚
+        protected override async Task RollbackAsync()
+        {
+            var familyId = Context.Get<string>("FamilyID");
+            if (familyId.IsNotNull())
+            {
+                var msgCode = await CatalogueItemQDAL.DeleteFamilyItemsAsync(familyId).ConfigureAwait(false);
+                if (!msgCode.IsSuccess()) throw new Exception(msgCode);
+                // ^^^^^^^^^^
+            }
+        }
 
         #endregion
 

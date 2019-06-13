@@ -1,10 +1,7 @@
 ﻿using Dapper;
 using SyncSoft.Olliix.Product.Command.ProductItem;
 using SyncSoft.Olliix.Product.DataAccess.ProductItem;
-using SyncSoft.Olliix.Product.DTO.ProductFamily;
-using SyncSoft.Olliix.Product.DTO.ProductItem;
 using System.Data;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SyncSoft.Olliix.Product.SqlServer.ProductItem
@@ -45,35 +42,6 @@ namespace SyncSoft.Olliix.Product.SqlServer.ProductItem
             para.Add("@Flags", cmd.Flags);
 
             return await base.TryExecuteAsync("PRDSP_InsertItem", para, commandType: CommandType.StoredProcedure).ConfigureAwait(false);
-        }
-
-        #endregion
-        // *******************************************************************************************************************************
-        #region -  GetFamilyItems  -
-
-        public async Task<ProductFamilyDTO> GetFamilyWithItemsAsync(string familyId)
-        {
-            var itemsMr = await base.TryQueryListAsync<ProductItemDTO>("SELECT * FROM V_ProductFamilyItems WHERE Family_ID = @FamilyID"
-            , new
-            {
-                FamilyID = familyId
-            }).ConfigureAwait(false);
-
-            if (itemsMr.Result.IsPresent())
-            {
-                var familyDto = new ProductFamilyDTO();
-                itemsMr.Result.Aggregate(familyDto, (f, i) =>
-                {
-                    f.Name = i.Name;
-                    f.Brand = i.Brand;
-                    f.Room = i.Room;
-                    f.Items.Add(i);
-                    return f;
-                });
-                return familyDto;
-            }
-
-            return null;
         }
 
         #endregion
