@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using SyncSoft.App;
 using SyncSoft.App.EngineConfigs;
-using SyncSoft.App.Redis.Confgiguration;
+using SyncSoft.App.Redis.Configuration;
 using SyncSoft.App.Redis.Messaging;
 using SyncSoft.App.Redis.Transaction;
 using SyncSoft.App.Securities;

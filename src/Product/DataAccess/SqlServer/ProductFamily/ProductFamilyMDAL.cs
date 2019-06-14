@@ -26,17 +26,17 @@ namespace SyncSoft.Olliix.Product.SqlServer.ProductFamily
                 dto).ConfigureAwait(false);
         }
 
-//        public async Task<string> UpdateAsync(ProductFamilyDTO dto)
-//        {
-//            return await base.TryExecuteAsync(
-//@"UPDATE [ProductFamilies] SET 
-//ID = @ID
-//, Name = @Name
-//, Brand = @Brand
-//, Room = @Room
-//, Flags = @Flags
-//WHERE ID = @ID", dto).ConfigureAwait(false);
-//        }
+        //        public async Task<string> UpdateAsync(ProductFamilyDTO dto)
+        //        {
+        //            return await base.TryExecuteAsync(
+        //@"UPDATE [ProductFamilies] SET 
+        //ID = @ID
+        //, Name = @Name
+        //, Brand = @Brand
+        //, Room = @Room
+        //, Flags = @Flags
+        //WHERE ID = @ID", dto).ConfigureAwait(false);
+        //        }
 
         //public async Task<ProductFamilyDTO> GetFamilyAsync(string id)
         //{

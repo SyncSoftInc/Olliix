@@ -1,19 +1,18 @@
-﻿using NUnit.Framework;
-using SyncSoft.App;
+﻿using SyncSoft.App;
 using SyncSoft.Olliix;
 
 namespace API
 {
-    [SetUpFixture]
-    public class Setup
+    public class Setup : Tests.SetupBase
     {
-        [OneTimeSetUp]
-        public static void Startup()
+        public override void Startup()
         {
             OlliixEngine.Init()
                 .UseProductAPI()
                 .AsUnitTestApiClient()
                 .Start();
+
+            base.Startup();
         }
     }
 }
