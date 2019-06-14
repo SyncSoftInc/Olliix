@@ -5,6 +5,6 @@ namespace SyncSoft.Olliix.Product.DataFacade.ProductItem
 {
     public interface IProductItemDF
     {
-        Task<ProductFamilyDTO> GetProductFamilyAsync(string famliyId);
+        Task<ProductFamilyDTO> GetProductFamilyAsync(string familyId);
     }
 }

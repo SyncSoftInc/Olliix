@@ -32,7 +32,9 @@ namespace SyncSoft.Olliix.Product.Domain.ProductFamily.Refresh
         protected override IEnumerable<TransactionActivity> BuildActivities()
         {
             yield return new CleanCatalogueItemActivity();
-            yield return new GenerateItemsActivity();
+            yield return new CleanProductFamilyActivity();
+            yield return new GenerateProductFamilyActivity();
+            yield return new GenerateCatalogueItemsActivity();
             yield return new RemoveFlagActivity();
         }
 

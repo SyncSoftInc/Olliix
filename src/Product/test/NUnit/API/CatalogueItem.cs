@@ -1,8 +1,6 @@
-﻿using NUnit.Framework;
-using SyncSoft.App.Components;
+﻿using SyncSoft.App.Components;
 using SyncSoft.Olliix.Product.API.Catalogue;
 using System;
-using System.Threading.Tasks;
 
 namespace API
 {
@@ -16,12 +14,12 @@ namespace API
 
         #endregion
 
-        [Test]
-        public async Task GenerateFamilyItems()
-        {
-            var hr = await CatalogueItemApi.GenerateFamilyItemsAsync(new { FamilyID = "FAMILY011" }).ConfigureAwait(false);
-            var msgCode = await hr.GetResultAsync().ConfigureAwait(false);
-            Assert.IsTrue(msgCode.IsSuccess());
-        }
+        //[Test]
+        //public async Task GenerateFamilyItems()
+        //{
+        //    var hr = await CatalogueItemApi.GenerateFamilyItemsAsync(new { FamilyID = "FAMILY011" }).ConfigureAwait(false);
+        //    var msgCode = await hr.GetResultAsync().ConfigureAwait(false);
+        //    Assert.IsTrue(msgCode.IsSuccess());
+        //}
     }
 }

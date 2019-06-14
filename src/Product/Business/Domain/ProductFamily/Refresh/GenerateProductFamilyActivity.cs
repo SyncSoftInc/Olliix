@@ -1,34 +1,29 @@
 ﻿using SyncSoft.App.Components;
 using SyncSoft.App.Transactions;
-using SyncSoft.Olliix.Product.DataAccess.Catalogue;
-using SyncSoft.Olliix.Product.DTO.Catalogue;
+using SyncSoft.Olliix.Product.DataAccess.ProductFamily;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace SyncSoft.Olliix.Product.Domain.ProductFamily.Refresh
 {
-    public class CleanCatalogueItemActivity : TccActivity
+    public class GenerateProductFamilyActivity : TccActivity
     {
         // *******************************************************************************************************************************
         #region -  Lazy Object(s)  -
 
-        private static readonly Lazy<ICatalogueItemQDAL> _lazyCatalogueItemQDAL = ObjectContainer.LazyResolve<ICatalogueItemQDAL>();
-        private ICatalogueItemQDAL CatalogueItemQDAL => _lazyCatalogueItemQDAL.Value;
+        private static readonly Lazy<IProductFamilyQDAL> _lazyProductFamilyQDAL = ObjectContainer.LazyResolve<IProductFamilyQDAL>();
+        private IProductFamilyQDAL ProductFamilyQDAL => _lazyProductFamilyQDAL.Value;
 
-        #endregion
-        // *******************************************************************************************************************************
-        #region -  Field(s)  -
-
-        private const string Context_BackupItems = "BackupItems";
+        private static readonly Lazy<IProductFamilyMDAL> _lazyProductFamilyMDAL = ObjectContainer.LazyResolve<IProductFamilyMDAL>();
+        private IProductFamilyMDAL ProductFamilyMDAL => _lazyProductFamilyMDAL.Value;
 
         #endregion
         // *******************************************************************************************************************************
         #region -  Property(ies)  -
 
-        public override int RunOrdinal => 0;
+        public override int RunOrdinal => 1;
 
         #endregion
         // *******************************************************************************************************************************
@@ -38,14 +33,17 @@ namespace SyncSoft.Olliix.Product.Domain.ProductFamily.Refresh
         {
             var familyId = Context.Get<string>("FamilyID");
 
-            // 备份老数据
-            var items = await CatalogueItemQDAL.GetFamilyItemsAsync(familyId).ConfigureAwait(false);
-            Context.Set(Context_BackupItems, items);
-
-            // 删除
-            var msgCode = await CatalogueItemQDAL.DeleteFamilyItemsAsync(familyId).ConfigureAwait(false);
-            if (!msgCode.IsSuccess()) throw new Exception(msgCode);
-            // ^^^^^^^^^^
+            var family = await ProductFamilyMDAL.GetFamilyWithItemsAsync(familyId).ConfigureAwait(false);
+            if (family.IsNotNull() && family.Items.IsPresent())
+            {
+                var msgCode = await ProductFamilyQDAL.SaveFamilyAsync(family).ConfigureAwait(false);
+                if (!msgCode.IsSuccess()) throw new Exception(msgCode);
+                // ^^^^^^^^^^
+            }
+            else
+            {
+                throw new Exception($"Cannot find family '{familyId}'");
+            }
         }
 
         #endregion
@@ -54,10 +52,10 @@ namespace SyncSoft.Olliix.Product.Domain.ProductFamily.Refresh
 
         protected override async Task RollbackAsync()
         {
-            var backupItems = Context.Get<IList<CatalogueItemDTO>>(Context_BackupItems);
-            if (backupItems.IsPresent())
+            var familyId = Context.Get<string>("FamilyID");
+            if (familyId.IsNotNull())
             {// 还原老数据
-                var msgCode = await CatalogueItemQDAL.BulkInsertItemsAsync(backupItems).ConfigureAwait(false);
+                var msgCode = await ProductFamilyQDAL.DeleteFamilyAsync(familyId).ConfigureAwait(false);
                 if (!msgCode.IsSuccess()) throw new Exception(msgCode);
                 // ^^^^^^^^^^
             }

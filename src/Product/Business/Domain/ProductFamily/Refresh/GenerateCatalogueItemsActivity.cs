@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SyncSoft.Olliix.Product.Domain.ProductFamily.Refresh
 {
-    public class GenerateItemsActivity : TccActivity
+    public class GenerateCatalogueItemsActivity : TccActivity
     {
         // *******************************************************************************************************************************
         #region -  Lazy Object(s)  -

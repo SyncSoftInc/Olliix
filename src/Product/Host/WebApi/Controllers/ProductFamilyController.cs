@@ -21,10 +21,22 @@ namespace SyncSoft.Olliix.Product.WebApi.Controllers
         // *******************************************************************************************************************************
         #region -  GetProductFamily  -
 
-        [HttpGet("product/family/{famliyId}")]
-        public async Task<ProductFamilyDTO> GetProductFamilyAsync(string famliyId)
+        [HttpGet("product/family/{familyId}")]
+        public async Task<ProductFamilyDTO> GetProductFamilyAsync(string familyId)
         {
-            return await _ProductItemDF.GetProductFamilyAsync(famliyId).ConfigureAwait(false);
+            return await _ProductItemDF.GetProductFamilyAsync(familyId).ConfigureAwait(false);
+        }
+
+        #endregion
+        // *******************************************************************************************************************************
+        #region -  RefreshProductFamily  -
+
+
+        [HttpPut("product/family/{familyId}")]
+        public async Task<string> RefreshProductFamilyAsync(string familyId)
+        {
+            var cmd = new RefreshProductFamilyCommand { FamilyID = familyId };
+            return await SendAsync(cmd).ConfigureAwait(false);
         }
 
         #endregion
