@@ -60,6 +60,7 @@ namespace SyncSoft.Olliix.Product.SqlServer.ProductFamily
                 var familyDto = new ProductFamilyDTO();
                 itemsMr.Result.Aggregate(familyDto, (f, i) =>
                 {
+                    f.ID = i.Family_ID;
                     f.Name = i.Name;
                     f.Brand = i.Brand;
                     f.Room = i.Room;

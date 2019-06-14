@@ -1,11 +1,21 @@
-﻿using SyncSoft.Olliix.Product.DataAccess.ProductFamily;
+﻿using SyncSoft.App.Components;
+using SyncSoft.App.Json;
+using SyncSoft.Olliix.Product.DataAccess.ProductFamily;
 using SyncSoft.Olliix.Product.DTO.ProductFamily;
+using System;
 using System.Threading.Tasks;
 
 namespace SyncSoft.Olliix.Product.Redis.ProductFamily
 {
     public class ProductFamilyQDAL : IProductFamilyQDAL
     {
+        // *******************************************************************************************************************************
+        #region -  Lazy Object(s)  -
+
+        private static readonly Lazy<IJsonSerializer> _lazyJsonSerializer = ObjectContainer.LazyResolve<IJsonSerializer>();
+        private IJsonSerializer JsonSerializer => _lazyJsonSerializer.Value;
+
+        #endregion
         // *******************************************************************************************************************************
         #region -  Field(s)  -
 
@@ -36,7 +46,8 @@ namespace SyncSoft.Olliix.Product.Redis.ProductFamily
 
         public async Task<string> SaveFamilyAsync(ProductFamilyDTO dto)
         {
-            await _db.HSetAsync(KEY, dto.ID, dto).ConfigureAwait(false);
+            var json = JsonSerializer.Serialize(dto);
+            await _db.HSetAsync(KEY, dto.ID, json).ConfigureAwait(false);
             return MsgCodes.SUCCESS;
         }
 

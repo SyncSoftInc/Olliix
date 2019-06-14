@@ -13,5 +13,10 @@ namespace SyncSoft.Olliix.Product.API
         {
             return base.PostAsync<string>(BearerAuthModeEnum.Client, "product/family", cmd, cancellationToken: cancellationToken);
         }
+
+        public Task<HttpResult<string>> RefreshAsync(string familyId, CancellationToken? cancellationToken)
+        {
+            return base.PutAsync<string>(BearerAuthModeEnum.Client, $"product/family/{familyId}", null, cancellationToken: cancellationToken);
+        }
     }
 }

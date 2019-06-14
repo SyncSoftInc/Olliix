@@ -11,7 +11,7 @@ namespace SyncSoft.App
         {
             configurator.Engine.Starting += (o, e) =>
             {
-                ObjectContainer.Register<IProductFamilyDB, ProductFamilyDB>(LifeCycleEnum.Singleton);
+                ObjectContainer.Register<IProductFamilyDB>(() => new ProductFamilyDB(CONSTANTS.CONNECTION_STRINGS.REDIS_DEFAULT), LifeCycleEnum.Singleton);
                 ObjectContainer.Register<IProductFamilyQDAL, ProductFamilyQDAL>(LifeCycleEnum.Singleton);
             };
 
