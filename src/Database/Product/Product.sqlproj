@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>SyncSoft.Olliix.Product.SqlServer.Design</Name>
+    <Name>Product</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{b68567c7-0036-4dec-a3c4-b90cb965d763}</ProjectGuid>
@@ -11,8 +11,8 @@
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>SyncSoft.Olliix.Product.SqlServer.Design</RootNamespace>
-    <AssemblyName>SyncSoft.Olliix.Product.SqlServer.Design</AssemblyName>
+    <RootNamespace>Product</RootNamespace>
+    <AssemblyName>Product</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
