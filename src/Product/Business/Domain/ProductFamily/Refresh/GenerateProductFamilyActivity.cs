@@ -1,6 +1,7 @@
 ﻿using SyncSoft.App.Components;
 using SyncSoft.App.Transactions;
 using SyncSoft.Olliix.Product.DataAccess.ProductFamily;
+using SyncSoft.Olliix.Product.Enum;
 using System;
 using System.Linq;
 using System.Threading;
@@ -36,9 +37,12 @@ namespace SyncSoft.Olliix.Product.Domain.ProductFamily.Refresh
             var family = await ProductFamilyMDAL.GetFamilyWithItemsAsync(familyId).ConfigureAwait(false);
             if (family.IsNotNull() && family.Items.IsPresent())
             {
-                var msgCode = await ProductFamilyQDAL.SaveFamilyAsync(family).ConfigureAwait(false);
-                if (!msgCode.IsSuccess()) throw new Exception(msgCode);
-                // ^^^^^^^^^^
+                if (!family.Flags.HasAnyFlag(ProductFlagsEnum.Inactive))
+                {
+                    var msgCode = await ProductFamilyQDAL.SaveFamilyAsync(family).ConfigureAwait(false);
+                    if (!msgCode.IsSuccess()) throw new Exception(msgCode);
+                    // ^^^^^^^^^^
+                }
             }
             else
             {
