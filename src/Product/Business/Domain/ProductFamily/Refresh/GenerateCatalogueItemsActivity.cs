@@ -3,6 +3,7 @@ using SyncSoft.App.Transactions;
 using SyncSoft.Olliix.Product.DataAccess.Catalogue;
 using SyncSoft.Olliix.Product.DataAccess.ProductFamily;
 using SyncSoft.Olliix.Product.DTO.Catalogue;
+using SyncSoft.Olliix.Product.Enum;
 using System;
 using System.Linq;
 using System.Threading;
@@ -38,35 +39,38 @@ namespace SyncSoft.Olliix.Product.Domain.ProductFamily.Refresh
             var family = await ProductFamilyMDAL.GetFamilyWithItemsAsync(familyId).ConfigureAwait(false);
             if (family.IsNotNull() && family.Items.IsPresent())
             {
-                var catalogueItems = family.Items
-                    .GroupBy(x => new { x.Family_ID, x.ImageHash })
-                    .SelectMany(x =>
-                    {
-                        var productItem = x.First();
-                        var catalogueItem = new CatalogueItemDTO
+                if (!family.Flags.HasAnyFlag(ProductFlagsEnum.Inactive))
+                {
+                    var catalogueItems = family.Items
+                        .GroupBy(x => new { x.Family_ID, x.ImageHash })
+                        .SelectMany(x =>
                         {
-                            Name = productItem.Name,
-                            Family_ID = productItem.Family_ID,
-                            ImageHash = productItem.ImageHash,
-                            ImageUrl = productItem.ImageUrl,
-                            //catalogueItem.DetailUrl = productItem.DetailUrl;
-                            //catalogueItem.BrandUrl = productItem.BrandUrl;
-                            Brand = productItem.Brand,
-                            Room = productItem.Room,
-                            Size = productItem.Size,
-                            Color = productItem.Color,
-                            Price = productItem.Price,
+                            var productItem = x.First();
+                            var catalogueItem = new CatalogueItemDTO
+                            {
+                                Name = productItem.Name,
+                                Family_ID = productItem.Family_ID,
+                                ImageHash = productItem.ImageHash,
+                                ImageUrl = productItem.ImageUrl,
+                                //catalogueItem.DetailUrl = productItem.DetailUrl;
+                                //catalogueItem.BrandUrl = productItem.BrandUrl;
+                                Brand = productItem.Brand,
+                                Room = productItem.Room,
+                                Size = productItem.Size,
+                                Color = productItem.Color,
+                                Price = productItem.Price,
 
-                            Search_ItemNOs = string.Join(",", x.Select(a => a.ItemNo))
-                        };
-                        //catalogueItem.Search_Colors = string.Join(",", x.Select(a => a.Color));
+                                Search_ItemNOs = string.Join(",", x.Select(a => a.ItemNo))
+                            };
+                            //catalogueItem.Search_Colors = string.Join(",", x.Select(a => a.Color));
 
-                        return new[] { catalogueItem };
-                    });
+                            return new[] { catalogueItem };
+                        });
 
-                var msgCode = await CatalogueItemQDAL.BulkInsertItemsAsync(catalogueItems).ConfigureAwait(false);
-                if (!msgCode.IsSuccess()) throw new Exception(msgCode);
-                // ^^^^^^^^^^
+                    var msgCode = await CatalogueItemQDAL.BulkInsertItemsAsync(catalogueItems).ConfigureAwait(false);
+                    if (!msgCode.IsSuccess()) throw new Exception(msgCode);
+                    // ^^^^^^^^^^
+                }
             }
             else
             {

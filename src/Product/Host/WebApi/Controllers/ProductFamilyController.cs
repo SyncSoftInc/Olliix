@@ -32,10 +32,16 @@ namespace SyncSoft.Olliix.Product.WebApi.Controllers
         #region -  RefreshProductFamily  -
 
 
-        [HttpPut("product/family/{familyId}")]
-        public async Task<string> RefreshProductFamilyAsync(string familyId)
+        //[HttpPut("product/family/{familyId}")]
+        //public async Task<string> RefreshAsync(string familyId)
+        //{
+        //    var cmd = new RefreshProductFamilyCommand { FamilyID = familyId };
+        //    return await SendAsync(cmd).ConfigureAwait(false);
+        //}
+
+        [HttpPut("product/family")]
+        public async Task<string> RefreshAllAsync(RefreshProductFamilyCommand cmd)
         {
-            var cmd = new RefreshProductFamilyCommand { FamilyID = familyId };
             return await SendAsync(cmd).ConfigureAwait(false);
         }
 

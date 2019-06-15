@@ -64,6 +64,7 @@ namespace SyncSoft.Olliix.Product.SqlServer.ProductFamily
                     f.Name = i.Name;
                     f.Brand = i.Brand;
                     f.Room = i.Room;
+                    f.Flags = i.Flags;
                     f.Items.Add(i);
                     return f;
                 });

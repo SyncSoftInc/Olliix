@@ -22,7 +22,7 @@ namespace SyncSoft.Olliix.Product.Domain.ProductFamily.Refresh
         public RefreshTransaction(RefreshProductFamilyCommand command)
             : base(command.CorrelationId)
         {
-            Context.Set("FamilyID", command.FamilyID);
+            Context.Set("FamilyIDs", command.FamilyIDs);
         }
 
         #endregion
