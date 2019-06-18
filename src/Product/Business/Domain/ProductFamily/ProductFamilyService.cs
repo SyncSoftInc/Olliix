@@ -5,6 +5,7 @@ using SyncSoft.Olliix.Product.DataAccess.ProductFamily;
 using SyncSoft.Olliix.Product.Domain.ProductFamily.Refresh;
 using SyncSoft.Olliix.Product.Enum;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -58,9 +59,15 @@ namespace SyncSoft.Olliix.Product.Domain.ProductFamily
             if (cmd.FamilyIDs.IsNull()) return MSGCODES.APP_0000000015;
             // ^^^^^^^^^^
 
-            var tran = new RefreshTransaction(cmd);
-            await tran.RunAsync().ConfigureAwait(false);
-            return tran.IsSuccess ? MsgCodes.SUCCESS : string.Join("\n", tran.ReadLogs());
+            // Run Transactions
+            IList<string> msgCodes = new List<string>();
+            foreach (var item in cmd.FamilyIDs)
+            {
+                var tran = new RefreshTransaction(new RefreshProductFamilyCommand { FamilyID = item });
+                await tran.RunAsync().ConfigureAwait(false);
+                msgCodes.Add(tran.IsSuccess ? MsgCodes.SUCCESS : string.Join("\n", tran.ReadLogs()));
+            }
+            return string.Join(",", msgCodes);
         }
 
         #endregion
