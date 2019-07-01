@@ -1,5 +1,4 @@
-﻿using SyncSoft.App;
-using SyncSoft.App.Components;
+﻿using SyncSoft.App.Components;
 using SyncSoft.Olliix.Product.Command.ProductFamily;
 using SyncSoft.Olliix.Product.DataAccess.ProductFamily;
 using SyncSoft.Olliix.Product.Domain.ProductFamily.Refresh;
@@ -50,16 +49,13 @@ namespace SyncSoft.Olliix.Product.Domain.ProductFamily
                     .Where(x => x.IsNotNull())
                     .ToList();
 
-                if (changedFamilyIds.IsNotNull() && changedFamilyIds.Any())
-                {
-                    cmd.FamilyIDs = changedFamilyIds;
-                }
+                if (!changedFamilyIds.IsPresent()) return MsgCodes.DATA_NOT_FOUND_QUERYDB;
+                // ^^^^^^^^^^
+
+                cmd.FamilyIDs = changedFamilyIds;
             }
 
-            if (cmd.FamilyIDs.IsNull()) return MSGCODES.APP_0000000015;
-            // ^^^^^^^^^^
-
-            // Run Transactions
+            // Run Transactions 
             IList<string> msgCodes = new List<string>();
             foreach (var item in cmd.FamilyIDs)
             {
