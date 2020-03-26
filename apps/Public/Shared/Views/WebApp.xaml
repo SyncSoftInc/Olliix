@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xam="clr-namespace:Xam.Plugin.WebView.Abstractions;assembly=Xam.Plugin.WebView.Abstractions"
+             x:Class="SyncSoft.Olliix.Views.WebApp">
+    <Grid>
+        <xam:FormsWebView x:Name="MainWebView" Source="{Binding TargetUrl}"></xam:FormsWebView>
+        <Grid BackgroundColor="White" Opacity=".5" IsVisible="{Binding IsBusy}">
+            <ActivityIndicator x:Name="ai" Color="Red" IsRunning="{Binding IsBusy}" Scale="{Binding ActivityIndicatorScale}" />
+        </Grid>
+        <StackLayout Orientation="Horizontal" BackgroundColor="#887C6B" Opacity=".5" HeightRequest="50" VerticalOptions="Start" IsVisible="{Binding IsDebug}">
+            <Button Text="Refresh" Command="{Binding RefreshCommand}" TextColor="White" BackgroundColor="Gray" Padding="15,0"></Button>
+            <Button Text="Not Busy" Command="{Binding SetBusyCommand}" TextColor="White" BackgroundColor="Gray" CommandParameter="false" Padding="15,0"></Button>
+            <Button Text="Close" Command="{Binding SetDebugCommand}" TextColor="White" BackgroundColor="Gray" CommandParameter="false" Padding="15,0"></Button>
+        </StackLayout>
+    </Grid>
+</ContentPage>
